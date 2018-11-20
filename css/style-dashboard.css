@@ -39,6 +39,9 @@ button{
 .intervention{
   display: none
 }
+.edit-red-flag{
+  display: none
+}
 
 input{
 	width: 100%;
@@ -57,4 +60,41 @@ input{
   font-size: 16px;
   margin-bottom: 10px;
   border-width: 2px;
+}
+
+.accordion {
+  background-color: #bb676b;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  border: 2px solid #bb676b;
+  color: black;
+  background-color: #f7e29c; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+.accordion:after {
+  content: '\02795';
+  font-size: 13px;
+  color: #bb676b;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; 
 }
