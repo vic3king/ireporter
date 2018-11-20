@@ -32,7 +32,11 @@ button{
   color: white;
   cursor: pointer;
 }
-form {
+
+.red-flag{
+  display: none
+}
+.intervention{
   display: none
 }
 
