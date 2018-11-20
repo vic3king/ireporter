@@ -9,9 +9,8 @@
 </head>
 <body>
   <div class="box">
-      <h3 class="page-title">Request Dashboard >></h3>
-     <button id="btn1">Add a Red flag</button>
-  </div>
+      <h2 class="page-title">Request Dashboard >></h2>
+     <button id="btn1">Add a Red flag </button>
   <form class="box red-flag">
       <div class="box2">
             <h3 class="page-title">Create a red-flag record:</h3>
@@ -23,8 +22,26 @@
               <button type="submit">Save Record</button>
         </div>
     </form>
+    <h4 class="page-title">List of Red Flags >></h4>
+    <button class="accordion">Incident: Disturbance in my area</button>
+    <div class="panel">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+     <button id="edit-btn">edit</button>
+     <form class="edit-red-flag">
+        <div class="box2">
+              <h3 class="page-title">Edit red-flag record:</h3>
+              <form>
+                <label for="title">Incident: </label>
+                <input type="text" placeholder="what is happening around you?" name="title" id="title-edit" required>
+                 <label for="description">Description: </label>
+                <textarea name="description" id="description-edit" rows="4" required></textarea>
+                <button type="submit">Save Record</button>
+          </div>
+      </form>
+    </div>
+  </div>     
     <div class="box">
-        <h3 class="page-title">Intervention Dashboard >></h3>
+        <h2 class="page-title">Intervention Dashboard >></h2>
        <button id="btn2">Make an Intervention Request</button>
     </div>
     <form class="box intervention">
