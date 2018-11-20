@@ -9,21 +9,35 @@
 </head>
 <body>
   <div class="box">
-      <h3 class="page-title">User Dashboard >></h3>
+      <h3 class="page-title">Request Dashboard >></h3>
      <button id="btn1">Add a Red flag</button>
   </div>
-  <form class="box" id="red-flag">
+  <form class="box red-flag">
       <div class="box2">
             <h3 class="page-title">Create a red-flag record:</h3>
             <form>
               <label for="title">Incident: </label>
-              <input type="text" name="title" id="title" required>
+              <input type="text" placeholder="what is happening around you?" name="title" id="title" required>
                <label for="description">Description: </label>
               <textarea name="description" id="description" rows="4" required></textarea>
               <button type="submit">Save Record</button>
         </div>
     </form>
-  </form>
+    <div class="box">
+        <h3 class="page-title">Intervention Dashboard >></h3>
+       <button id="btn2">Make an Intervention Request</button>
+    </div>
+    <form class="box intervention">
+        <div class="box2">
+              <h3 class="page-title">Make an Intervention request:</h3>
+              <form>
+                <label for="title">Request For: </label>
+                <input type="text" name="title" id="title" placeholder="e.g Repair bad road sections, collapsed bridges, flooding e.t.c" required>
+                 <label for="description">Description: </label>
+                <textarea name="description" id="description" rows="4" placeholder="Describe what you want" required></textarea>
+                <button type="submit">Make Request</button>
+          </div>
+      </form>
 <script src="js/script.js"></script>
 </body>
 </html>
