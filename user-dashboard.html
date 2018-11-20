@@ -32,10 +32,10 @@
               <h3 class="page-title">Edit red-flag record:</h3>
               <form>
                 <label for="title">Incident: </label>
-                <input type="text" placeholder="what is happening around you?" name="title" id="title-edit" required>
+                <input type="text" name="title" id="title-edit" required>
                  <label for="description">Description: </label>
                 <textarea name="description" id="description-edit" rows="4" required></textarea>
-                <button type="submit">Save Record</button>
+                <button type="submit">Update Record</button>
           </div>
       </form>
     </div>
@@ -43,7 +43,6 @@
     <div class="box">
         <h2 class="page-title">Intervention Dashboard >></h2>
        <button id="btn2">Make an Intervention Request</button>
-    </div>
     <form class="box intervention">
         <div class="box2">
               <h3 class="page-title">Make an Intervention request:</h3>
@@ -51,10 +50,27 @@
                 <label for="title">Request For: </label>
                 <input type="text" name="title" id="title" placeholder="e.g Repair bad road sections, collapsed bridges, flooding e.t.c" required>
                  <label for="description">Description: </label>
-                <textarea name="description" id="description" rows="4" placeholder="Describe what you want" required></textarea>
+                <textarea name="description" id="description" rows="4" placeholder="Describe the nature of your Request" required></textarea>
                 <button type="submit">Make Request</button>
           </div>
       </form>
+      <h4 class="page-title">List of Intervention Records >></h4>
+    <button class="accordion">Request: Fix our Roads!!!</button>
+    <div class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+       <button id="intervention-edit">edit</button>
+       <form class="edit-intervention">
+          <div class="box2">
+                <h3 class="page-title">Edit Intervention Request:</h3>
+                <form>
+                  <label for="title">Description: </label>
+                  <input type="text" name="title" id="title-edit" required>
+                   <label for="description">Description: </label>
+                  <textarea name="description" id="description-edit" rows="4" required></textarea>
+                  <button type="submit">Update Request</button>
+            </div>
+        </form>
+    </div>
 <script src="js/script.js"></script>
 </body>
 </html>

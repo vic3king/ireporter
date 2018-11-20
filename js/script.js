@@ -53,6 +53,7 @@ for (i = 0; i < accordion.length; i++) {
 
 let editButton = document.getElementById('edit-btn')
 
+//event listener for editing a red flag button
 editButton.addEventListener('click', (e) => {
   //create div and add a class
   let div = document.createElement("div")
@@ -60,5 +61,18 @@ editButton.addEventListener('click', (e) => {
 
   //show form
   document.querySelector(".edit-red-flag").style.display = "block";
+  e.preventDefault()
+})
+
+let interventionEdit = document.getElementById('intervention-edit')
+
+//event listener for editing a red flag button
+interventionEdit.addEventListener('click', (e) => {
+  //create div and add a class
+  let div = document.createElement("div")
+  div.className = 'box'
+
+  //show form
+  document.querySelector(".edit-intervention").style.display = "block";
   e.preventDefault()
 })

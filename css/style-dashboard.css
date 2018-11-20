@@ -43,6 +43,10 @@ button{
   display: none
 }
 
+.edit-intervention{
+  display: none
+}
+
 input{
 	width: 100%;
 	height: 33px;
