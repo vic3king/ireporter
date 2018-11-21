@@ -9,7 +9,6 @@
   <title>Admin - iReporter </title>
   <link rel="icon" href="images/iconreport.png">
 </head>
-</head>
 <body>
     <header>
         <div class="container">
@@ -29,6 +28,18 @@
     <button class="accordion">Incident: Disturbance in my area</button>
     <div class="panel">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div>
+            <input type="radio" id="investige-red" name="redflag-status" checked>
+            <label for="investige-red">Under Investigation</label>
+          </div>
+          <div>
+            <input type="radio" name="redflag-status" id="reject-red" >
+            <label for="reject-red">Rejected</label>
+          </div>
+          <div>
+            <input type="radio" name="redflag-status" id="resolve-red">
+            <label for="resolve-red">Resolved</label>
+          </div>
     </div>
   </div>     
     <div class="box">
@@ -36,6 +47,19 @@
     <button class="accordion">Request: Fix our Roads!!!</button>
     <div class="panel">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Select a maintenance drone:</p>
+        <div>
+          <input type="radio" id="investigation" name="status" checked>
+          <label for="investigation">Under Investigation</label>
+        </div>
+        <div>
+          <input type="radio" name="status" id="reject" >
+          <label for="reject">Rejected</label>
+        </div>
+        <div>
+          <input type="radio" name="status" id="resolved">
+          <label for="resolved">Resolved</label>
+        </div>
     </div>
 <script src="js/script.js"></script>
 </body>
