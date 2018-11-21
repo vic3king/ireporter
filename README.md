@@ -25,11 +25,14 @@ resolved).
 ## Technologies 
 
 ### Frontend
-[Html] (https://www.w3schools.com/html/html_intro.asp) HTML is the standard markup language for creating Web pages.
-[CSS] (https://www.w3schools.com/css/default.asp) CSS is a language that describes the style of an HTML document.
-[Javascript] (https://www.javascript.com/)
+[Html](https://www.w3schools.com/html/html_intro.asp) HTML is the standard markup language for creating Web pages.
+[CSS](https://www.w3schools.com/css/default.asp) CSS is a language that describes the style of an HTML document.
+[Javascript](https://www.javascript.com/)
 
 ## Pivotal Tracker
 
-Project is currently being managed with Pivotal Tracker, a project management tool. You can find the stories on the [iReporter Pivotal Tracker Board] (https://www.pivotaltracker.com/n/projects/2226542)
+Project is currently being managed with Pivotal Tracker, a project management tool. You can find the stories on the [iReporter Pivotal Tracker Board](https://www.pivotaltracker.com/n/projects/2226542)
 
+## License and Copyright
+
+Licensed under the [MIT License](LICENSE)
