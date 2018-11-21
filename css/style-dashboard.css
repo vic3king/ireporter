@@ -102,3 +102,8 @@ input{
 .active:after {
   content: "\2796"; 
 }
+
+input[type = "radio"] {
+  height: 20px;
+  width: 30px;
+}
