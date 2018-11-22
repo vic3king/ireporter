@@ -1,0 +1,24 @@
+{
+  "name": "ireporter",
+  "version": "1.0.0",
+  "description": "![iconreport](https://user-images.githubusercontent.com/40821284/48873690-1deb7a80-ede7-11e8-805b-601f26ccaa67.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vic3king/iReporter.git"
+  },
+  "author": "Akaniru Victory",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vic3king/iReporter/issues"
+  },
+  "homepage": "https://github.com/vic3king/iReporter#readme",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
