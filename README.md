@@ -1,6 +1,8 @@
 # iReporter
 ![iconreport](https://user-images.githubusercontent.com/40821284/48873690-1deb7a80-ede7-11e8-805b-601f26ccaa67.png)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Features
 
 ### Required Features
@@ -26,9 +28,9 @@ resolved).
 ## Technologies 
 
 ### Frontend
-[Html](https://www.w3schools.com/html/html_intro.asp) HTML is the standard markup language for creating Web pages.
-[CSS](https://www.w3schools.com/css/default.asp) CSS is a language that describes the style of an HTML document.
-[Javascript](https://www.javascript.com/)
+* [Html](https://www.w3schools.com/html/html_intro.asp) HTML is the standard markup language for creating Web pages.
+* [CSS](https://www.w3schools.com/css/default.asp) CSS is a language that describes the style of an HTML document.
+* [Javascript](https://www.javascript.com/) JavaScript is a programming language that adds interactivity to your website.
 
 ## Pivotal Tracker
 
