@@ -6,10 +6,7 @@ body{
   background: #fcbc80;
 }
 .box{
-  padding: 40px;
-  margin-left: 40px;
-  margin-right: 40px;
-  background: #f7e29c;
+  padding: 10px;
   color: #bb676b;
 }
 .box2{
@@ -79,7 +76,7 @@ input{
   transition: 0.4s;
 }
 
-.active, .accordion:hover {
+.active, .accordion:hover, #btn1:hover, #btn2:hover {
   border: 2px solid #bb676b;
   color: black;
   background-color: #f7e29c; 
