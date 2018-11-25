@@ -1,23 +1,3 @@
-const accordionRemote = () => {
-  //  accordion to render list of red flags
-  const accordion = document.getElementsByClassName('accordion');
-
-  for (let i = 0; i < accordion.length; i += 1) {
-    accordion[i].addEventListener('click', function toggle() {
-      //  classlist is used to access the class instead of using its direct classs name
-      this.classList.toggle('active');
-      //  this is is selecting the div
-      const panel = this.nextElementSibling;
-      //  div is hidden in css, conditional to display or hide it
-      if (panel.style.display === 'block') {
-        panel.style.display = 'none';
-      } else {
-        panel.style.display = 'block';
-      }
-    });
-  }
-};
-
 // reusable conditional statement
 const conditional = (e, btnId, elClass1, elClass2, state1, state2) => {
   // the div wont have an id of btn1, so js will check the next element which will be the button
@@ -33,8 +13,8 @@ const conditional = (e, btnId, elClass1, elClass2, state1, state2) => {
 
 function formsDisplayLogic() {
   //  parent element for the forms
-  const parentDiv1 = document.querySelector('#parent');
-  const parentDiv2 = document.querySelector('#parent2');
+  const parentDiv1 = document.querySelector('#addRedFlagDiv');
+  const parentDiv2 = document.querySelector('#interventionRequestDiv');
   function displayForm1(e) {
     // conditional logic function
     conditional(e, 'btn1', '.intervention', '.red-flag', 'none', 'block');
@@ -55,8 +35,8 @@ function formsDisplayLogic() {
 
 
 function editForm() {
-  const parentDiv1 = document.querySelector('#parentx');
-  const parentDiv2 = document.querySelector('#parentxy');
+  const parentDiv1 = document.querySelector('#redFlagAccordDiv');
+  const parentDiv2 = document.querySelector('#intervRequestDiv');
 
   function displayFormEdit1(e) {
     // if (e.target.id === 'btn3') {
@@ -84,11 +64,5 @@ function editForm() {
   parentDiv2.addEventListener('click', displayFormEdit2);
 }
 
-// used to prevent error generating in admin.html
-try {
-  formsDisplayLogic();
-  editForm();
-  accordionRemote();
-} catch (error) {
-  accordionRemote();
-}
+formsDisplayLogic();
+editForm();
