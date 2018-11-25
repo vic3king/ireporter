@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
-// eslint-disable-next-line import/no-unresolved
-import UserModel from '../models/User';
+import UserModel from '../models/user';
 
 const User = {
   /**
