@@ -4,7 +4,11 @@
   "description": "![iconreport](https://user-images.githubusercontent.com/40821284/48873690-1deb7a80-ede7-11e8-805b-601f26ccaa67.png)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha src/test --compilers js:babel-core/register --exit",
+    "build": "babel server.js --out-dir build",
+    "dev-start": "babel-watch server.js",
+    "cover": "istanbul cover _mocha",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -17,8 +21,21 @@
   },
   "homepage": "https://github.com/vic3king/iReporter#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.7",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "coveralls": "^3.0.2",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "travis": "^0.1.1"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
   }
 }

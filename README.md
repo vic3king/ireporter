@@ -5,6 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/128c9747e0b49230e3f3/maintainability)](https://codeclimate.com/github/vic3king/iReporter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Continuous Integration](https://camo.githubusercontent.com/23ee7a697b291798079e258bbc25434c4fac4f8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f50726f7465637465645f62792d486f756e642d6138373364312e737667)](https://houndci.com)
+[![Coverage Status](https://coveralls.io/repos/github/vic3king/ireporter/badge.svg?branch=development)](https://coveralls.io/github/vic3king/ireporter?branch=development)
 
 iReporter enables
 any/every citizen to bring any form of corruption to the notice of appropriate authorities and the
