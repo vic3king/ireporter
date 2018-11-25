@@ -2,7 +2,11 @@ body{
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #fcbc80;
+  background: white;
+}
+a:hover{
+  padding-top: 10px;
+  border-bottom: white solid;
 }
 .box{
   width: 300px;
@@ -11,9 +15,9 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  background: #f7e29c;
+  background: black;
   text-align: center;
-  color: #bb676b;
+  color: white;
 }
 .center {
   position: absolute;
@@ -21,7 +25,7 @@ body{
   left: 50%;
   transform: translate(-50%,-50%);
   text-align: center;
-  color: #bb676b;
+  color: black;
 }
 
 input { font-size: 20px; }
@@ -31,34 +35,36 @@ input { font-size: 20px; }
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #ea9624;
+  border: 2px solid white;
   padding: 14px 10px;
   width: 200px;
   outline: none;
-  color: black;
+  color: white;
   border-radius: 24px;
   transition: 0.25s;
 }
 input:focus{
   width: 280px;
-  border-color: #bb676b;
+  border-color: red;
 }
 input[type = "submit"]{
-  background-color: #bb676b;
+  background-color: white;
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #bb676b;
+  border: 2px solid white;
   padding: 14px 40px;
-  color: white;
+  color: black;
   cursor: pointer;
+  font-weight: bold;
 }
 input[type = "submit"]:hover{
- color: black;
+  background-color: black;
+ color: white;
 }
 a{
   padding: 10px;
-  color:black;
+  color:white;
   font-size: 25px;
   text-decoration: none;
 }

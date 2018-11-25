@@ -3,28 +3,31 @@ body{
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #fcbc80;
 }
 .box{
   padding: 10px;
-  color: #bb676b;
+  color: black;
 }
+
 .box2{
   padding: 40px;
   margin-left: 40px;
   margin-right: 40px;
   background: #f7f7f7;
-  color: #bb676b;
+  color: black;
 }
+/* p{
+  font-size: 20px;
+} */
 
 button{
   font-size: 25px;
-  background-color: #bb676b;
+  background-color: black;
   display:block;
   width: 100%;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #bb676b;
+  border: 2px solid black;
   padding: 14px 40px;
   color: white;
   cursor: pointer;
@@ -64,7 +67,7 @@ input{
 }
 
 .accordion {
-  background-color: #bb676b;
+  /* background-color: #bb676b; */
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -77,9 +80,9 @@ input{
 }
 
 .active, .accordion:hover, #btn1:hover, #btn2:hover {
-  border: 2px solid #bb676b;
+  border: 2px solid black;
   color: black;
-  background-color: #f7e29c; 
+  background-color: #f7f7f7; 
 }
 
 .panel {
@@ -91,7 +94,6 @@ input{
 .accordion:after {
   content: '\02795';
   font-size: 13px;
-  color: #bb676b;
   float: right;
   margin-left: 5px;
 }
