@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import UserModel from '../models/ser';
+import UserModel from '../models/user';
 
 const User = {
   /**
