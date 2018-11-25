@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 import express from 'express';
-import User from './src/controllers/User';
+import User from './src/controllers/user';
 
 const app = express();
 const port = process.env.PORT || 3000;
