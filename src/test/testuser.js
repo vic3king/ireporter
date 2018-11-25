@@ -18,14 +18,23 @@ const dumUser = {
 };
 
 describe('/Post create user', () => {
-  it('it should Create a new user', (done) => {
+  it('it should Create a new user with correct status code', (done) => {
     chai.request(server)
       .post('/api/v1/user')
       .send(dumUser)
       .end((err, res) => {
         res.should.have.status(201);
         res.body.status.should.be.equal(201);
-        // expect(res.body.status).to.be.equal('success');
+        res.body.data.should.include(dumUser);
+        done();
+      });
+  });
+
+  it('it should Create a new user with required fields', (done) => {
+    chai.request(server)
+      .post('/api/v1/user')
+      .send(dumUser)
+      .end((err, res) => {
         res.body.data.should.include(dumUser);
         done();
       });
