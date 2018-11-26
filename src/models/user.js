@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 
-class User {
+class Ireporter {
   /**
    * class constructor
    * @param {object} userInfo
@@ -13,7 +13,7 @@ class User {
    *
    * @returns {object} user object
    */
-  create(userInfo) {
+  createUser(userInfo) {
     const newUser = {
       id: uuid.v4(),
       firstname: userInfo.firstname,
@@ -28,5 +28,23 @@ class User {
     this.users.push(newUser);
     return newUser;
   }
+
+  createRecord(recordInfo) {
+    const createRecord = {
+      id: uuid.v4(),
+      title: recordInfo.title,
+      description: recordInfo.description,
+      createdOn: new Date(),
+      createdBy: recordInfo.createdBy,
+      type: recordInfo.type,
+      location: recordInfo.location,
+      status: 'draft',
+      Images: [],
+      Videos: [],
+      comment: recordInfo.comment,
+    };
+    this.users.push(createRecord);
+    return createRecord;
+  }
 }
-export default new User();
+export default new Ireporter();

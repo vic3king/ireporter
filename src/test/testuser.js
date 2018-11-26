@@ -25,7 +25,6 @@ describe('/Post create user', () => {
       .end((err, res) => {
         res.should.have.status(201);
         res.body.status.should.be.equal(201);
-        res.body.data.should.include(dumUser);
         done();
       });
   });
