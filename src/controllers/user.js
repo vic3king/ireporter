@@ -36,6 +36,17 @@ const Ireporter = {
       data: record,
     });
   },
+
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} reflections array
+   */
+  getAllRecords(req, res) {
+    const records = UserModel.findAllRecords();
+    return res.status(200).send(records);
+  },
 };
 
 

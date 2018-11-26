@@ -7,6 +7,7 @@ class Ireporter {
    */
   constructor() {
     this.users = [];
+    this.records = [];
   }
 
   /**
@@ -43,8 +44,15 @@ class Ireporter {
       Videos: [],
       comment: recordInfo.comment,
     };
-    this.users.push(createRecord);
+    this.records.push(createRecord);
     return createRecord;
+  }
+
+  /**
+   * @returns {object} returns all reflections
+   */
+  findAllRecords() {
+    return this.records;
   }
 }
 export default new Ireporter();

@@ -11,6 +11,7 @@ app.use('/ireporter/v1/front-end', express.static('UI'));
 
 app.post('/ireporter/v2/user', User.createUser);
 app.post('/ireporter/v3/record', User.createRecord);
+app.get('/ireporter/v4/records', User.getAllRecords);
 
 // server
 app.listen(port, () => {
