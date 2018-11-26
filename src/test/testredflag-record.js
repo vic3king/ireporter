@@ -37,7 +37,7 @@ describe('/Post create red-flag', () => {
         res.body.data.should.have.include.key('createdBy');
         res.body.data.should.have.include.key('type');
         res.body.data.should.have.include.key('location');
-        res.body.data.should.have.include.key('comment');
+        res.body.data.should.have.include.key('description');
         done();
       });
   });
