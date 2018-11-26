@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/ireporter/v1/front-end', express.static('UI'));
 
-app.post('/api/v1/user', User.create);
+app.post('/ireporter/v2/user', User.create);
 
 // server
 app.listen(port, () => {

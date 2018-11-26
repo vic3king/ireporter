@@ -16,12 +16,12 @@ class User {
   create(userInfo) {
     const newUser = {
       id: uuid.v4(),
-      firstname: userInfo.firstname || '',
-      lastname: userInfo.lastname || '',
-      othernames: userInfo.othernames || '',
-      email: userInfo.email || '',
-      phoneNumber: userInfo.phoneNumber || '',
-      username: userInfo.username || '',
+      firstname: userInfo.firstname,
+      lastname: userInfo.lastname,
+      othernames: userInfo.othernames,
+      email: userInfo.email,
+      phoneNumber: userInfo.phoneNumber,
+      username: userInfo.username,
       registered: new Date(),
       isAdmin: false,
     };
