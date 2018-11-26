@@ -7,7 +7,18 @@ class Ireporter {
    */
   constructor() {
     this.users = [];
-    this.records = [];
+    this.records = [{
+      id: '41e914a9-96ba-4bda-a406-f86763b41c89',
+      title: 'third',
+      description: 'uifnklmnkl',
+      createdOn: '2018-11-26T15:39:32.548Z',
+      type: 'redflag',
+      location: '23674, 56789',
+      status: 'draft',
+      Images: [],
+      Videos: [],
+      comment: 'body of record',
+    }];
   }
 
   /**
@@ -53,6 +64,10 @@ class Ireporter {
    */
   findAllRecords() {
     return this.records;
+  }
+
+  findById(id) {
+    return this.records.find(record => record.id === id);
   }
 }
 export default new Ireporter();

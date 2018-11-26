@@ -20,7 +20,7 @@ const dumUser = {
 describe('/Post create user', () => {
   it('it should Create a new user with correct status code', (done) => {
     chai.request(server)
-      .post('/ireporter/v2/user')
+      .post('/api/v1/user')
       .send(dumUser)
       .end((err, res) => {
         res.should.have.status(201);
@@ -31,7 +31,7 @@ describe('/Post create user', () => {
 
   it('it should Create a new user with required fields', (done) => {
     chai.request(server)
-      .post('/ireporter/v2/user')
+      .post('/api/v1/user')
       .send(dumUser)
       .end((err, res) => {
         res.body.data.should.include(dumUser);
