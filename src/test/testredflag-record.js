@@ -8,21 +8,18 @@ chai.should();
 chai.use(chaiHttp);
 
 const redFlag = {
-  createdOn: new Date(),
+  title: 'gfbfnffg',
+  description: 'this is a red flag record',
   createdBy: 'victory',
-  type: 'redflag',
-  location: [45.002440, -90.810480],
-  status: [],
-  Images: [],
-  Videos: [],
-  comment: 'this is a red flag record',
+  type: 'record',
+  location: '0900000 ,988990',
 };
 
 
 describe('/Post create red-flag', () => {
-  it('it should Create a new redflag record with correct status code', (done) => {
+  it('it should Create a new record with correct status code', (done) => {
     chai.request(server)
-      .post('/ireporter/v3/redflag')
+      .post('/ireporter/v3/record')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(201);
@@ -33,23 +30,14 @@ describe('/Post create red-flag', () => {
 
   it('it should Create a new record with required fields', (done) => {
     chai.request(server)
-      .post('/ireporter/v3/redflag')
+      .post('/ireporter/v3/record')
       .send(redFlag)
       .end((err, res) => {
-        res.body.data.should.include(redFlag);
-        done();
-      });
-  });
-
-  it('it should create record with properties of specific type', (done) => {
-    chai.request(server)
-      .post('/ireporter/v3/redflag')
-      .send(redFlag)
-      .end((err, res) => {
-        res.body.data.location.to.be.an('array');
-        res.body.data.status.to.be.an('array');
-        res.body.data.images.to.be.an('array');
-        res.body.data.location.to.be.an('array');
+        res.body.data.should.have.include.key('title');
+        res.body.data.should.have.include.key('createdBy');
+        res.body.data.should.have.include.key('type');
+        res.body.data.should.have.include.key('location');
+        res.body.data.should.have.include.key('comment');
         done();
       });
   });
