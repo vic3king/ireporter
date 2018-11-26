@@ -19,7 +19,7 @@ const redFlag = {
 describe('/Post create red-flag', () => {
   it('it should Create a new record with correct status code', (done) => {
     chai.request(server)
-      .post('/ireporter/v3/record')
+      .post('/api/v1/record')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(201);
@@ -30,7 +30,7 @@ describe('/Post create red-flag', () => {
 
   it('it should Create a new record with required fields', (done) => {
     chai.request(server)
-      .post('/ireporter/v3/record')
+      .post('/api/v1/record')
       .send(redFlag)
       .end((err, res) => {
         res.body.data.should.have.include.key('title');

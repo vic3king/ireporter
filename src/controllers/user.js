@@ -47,6 +47,20 @@ const Ireporter = {
     const records = UserModel.findAllRecords();
     return res.status(200).send(records);
   },
+
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} reflection object
+   */
+  getOneRecord(req, res) {
+    const record = UserModel.findById(req.params.id);
+    if (!record) {
+      return res.status(404).send({ message: 'record not found, enter a valid id' });
+    }
+    return res.status(200).send(record);
+  },
 };
 
 
