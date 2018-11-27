@@ -74,7 +74,7 @@ const Ireporter = {
    *
    * @param {object} req
    * @param {object} res
-   * @returns {object} updated record
+   * @returns {object} updated record(location)
    */
   updatedLocation(req, res) {
     const record = UserModel.findById(req.params.id);
@@ -95,7 +95,7 @@ const Ireporter = {
    *
    * @param {object} req
    * @param {object} res
-   * @returns {object} updated record
+   * @returns {object} updated record(comment)
    */
   updatedComment(req, res) {
     const record = UserModel.findById(req.params.id);
