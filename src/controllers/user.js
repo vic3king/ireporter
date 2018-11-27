@@ -74,7 +74,7 @@ const Ireporter = {
    *
    * @param {object} req
    * @param {object} res
-   * @returns {object} updated record
+   * @returns {object} updated record(location)
    */
   updatedLocation(req, res) {
     const record = UserModel.findById(req.params.id);
@@ -95,7 +95,7 @@ const Ireporter = {
    *
    * @param {object} req
    * @param {object} res
-   * @returns {object} updated record
+   * @returns {object} updated record(comment)
    */
   updatedComment(req, res) {
     const record = UserModel.findById(req.params.id);
@@ -110,6 +110,23 @@ const Ireporter = {
       status: 200,
       data: [updatedComment],
     });
+  },
+
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   */
+  deleteOneRecord(req, res) {
+    const record = UserModel.findById(req.params.id);
+    if (!record) {
+      return res.status(404).send({
+        status: 404,
+        error: 'Record not found',
+      });
+    }
+    const ref = UserModel.deleteById(req.params.id);
+    return res.status(200).send(ref);
   },
 };
 
