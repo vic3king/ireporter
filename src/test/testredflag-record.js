@@ -33,11 +33,11 @@ describe('/Post create red-flag', () => {
       .post('/api/v1/record')
       .send(redFlag)
       .end((err, res) => {
-        res.body.data.should.have.include.key('title');
-        res.body.data.should.have.include.key('createdBy');
-        res.body.data.should.have.include.key('type');
-        res.body.data.should.have.include.key('location');
-        res.body.data.should.have.include.key('description');
+        res.body.data[0].should.have.include.key('title');
+        res.body.data[0].should.have.include.key('createdBy');
+        res.body.data[0].should.have.include.key('type');
+        res.body.data[0].should.have.include.key('location');
+        res.body.data[0].should.have.include.key('description');
         done();
       });
   });

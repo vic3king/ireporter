@@ -33,7 +33,7 @@ const Ireporter = {
     const record = UserModel.createRecord(req.body);
     return res.status(201).send({
       status: 201,
-      data: record,
+      data: [record],
     });
   },
 
@@ -41,25 +41,54 @@ const Ireporter = {
    *
    * @param {object} req
    * @param {object} res
-   * @returns {object} reflections array
+   * @returns {object} records array
    */
   getAllRecords(req, res) {
     const records = UserModel.findAllRecords();
-    return res.status(200).send(records);
+    return res.status(200).send({
+      status: 200,
+      data: records,
+    });
   },
 
   /**
    *
    * @param {object} req
    * @param {object} res
-   * @returns {object} reflection object
+   * @returns {object} record object
    */
   getOneRecord(req, res) {
     const record = UserModel.findById(req.params.id);
     if (!record) {
-      return res.status(404).send({ message: 'record not found, enter a valid id' });
+      return res.status(404).send({
+        status: 404,
+        error: 'Record not found, Enter a valid id',
+      });
     }
-    return res.status(200).send(record);
+    return res.status(200).send({
+      status: 200,
+      data: [record],
+    });
+  },
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} updated record
+   */
+  update(req, res) {
+    const record = UserModel.findById(req.params.id);
+    if (!record) {
+      return res.status(404).send({
+        status: 404,
+        error: 'Record not found, Enter a valid id',
+      });
+    }
+    const updatedLocation = UserModel.updateLocation(req.params.id, req.body);
+    return res.status(200).send({
+      status: 200,
+      data: [updatedLocation],
+    });
   },
 };
 
