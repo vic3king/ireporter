@@ -13,7 +13,7 @@ app.post('/api/v1/user', User.createUser);
 app.post('/api/v1/record', User.createRecord);
 app.get('/api/v1/records', User.getAllRecords);
 app.get('/api/v1/records/:id', User.getOneRecord);
-
+app.put('/api/v1/:id/location', User.update);
 // server
 app.listen(port, () => {
   console.log(`Server Started On Port ${port}`);
