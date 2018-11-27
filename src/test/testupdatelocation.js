@@ -44,7 +44,7 @@ describe('/Post Update location', () => {
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 404,
-          error: 'Record not found',
+          error: 'Record not found, Enter a valid id',
         });
         done();
       });
