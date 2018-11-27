@@ -24,7 +24,7 @@ const Ireporter = {
   },
 
   createRecord(req, res) {
-    if (!req.body.title || !req.body.type || !req.body.location || !req.body.description) {
+    if (!req.body.title || !req.body.type || !req.body.location || !req.body.description || !req.body.comment) {
       return res.status(400).send({
         status: 400,
         error: 'Could not create the record, Kindly enter required fields',
@@ -76,7 +76,7 @@ const Ireporter = {
    * @param {object} res
    * @returns {object} updated record
    */
-  update(req, res) {
+  updatedLocation(req, res) {
     const record = UserModel.findById(req.params.id);
     if (!record) {
       return res.status(404).send({
@@ -88,6 +88,27 @@ const Ireporter = {
     return res.status(200).send({
       status: 200,
       data: [updatedLocation],
+    });
+  },
+
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} updated record
+   */
+  updatedComment(req, res) {
+    const record = UserModel.findById(req.params.id);
+    if (!record) {
+      return res.status(404).send({
+        status: 404,
+        error: 'Record not found, Enter a valid id',
+      });
+    }
+    const updatedComment = UserModel.updateComment(req.params.id, req.body);
+    return res.status(200).send({
+      status: 200,
+      data: [updatedComment],
     });
   },
 };

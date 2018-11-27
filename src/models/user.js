@@ -76,13 +76,27 @@ class Ireporter {
   /**
    *
    * @param {uuid} id
-   * @param {object} data
+   * @param {object} userInfo
    */
   updateLocation(id, userInfo) {
     const record = this.findById(id);
     const index = this.records.indexOf(record);
     this.records[index].message = 'Updated red-flag record\'s location';
     this.records[index].location = userInfo.location;
+    this.records[index].modefiedOn = new Date();
+    return this.records[index];
+  }
+
+  /**
+   *
+   * @param {uuid} id
+   * @param {object} userInfo
+   */
+  updateComment(id, userInfo) {
+    const record = this.findById(id);
+    const index = this.records.indexOf(record);
+    this.records[index].message = 'Updated red-flag record\'s comment';
+    this.records[index].comment = userInfo.comment;
     this.records[index].modefiedOn = new Date();
     return this.records[index];
   }

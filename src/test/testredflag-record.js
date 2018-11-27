@@ -8,11 +8,12 @@ chai.should();
 chai.use(chaiHttp);
 
 const redFlag = {
-  title: 'gfbfnffg',
+  title: 'title of record',
   description: 'this is a red flag record',
   createdBy: 'victory',
   type: 'record',
   location: '0900000 ,988990',
+  comment: 'body of record',
 };
 
 
