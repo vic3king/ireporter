@@ -7,38 +7,38 @@ const server = require('../../server').default;
 chai.should();
 chai.use(chaiHttp);
 
-const redFlag = {
-  title: 'DumTitile',
-  description: 'this is a red flag record',
-  createdBy: 'victory',
-  type: 'record',
-  location: '0900000 ,988990',
-  comment: 'body of a redflag',
+const redFlagDelete = {
+  id: '2b3b4aee-4c86-4ea6-a45c-1a9c4d7713d6',
+  title: 'Dummy Data2',
+  description: 'Dummy data created for testing',
+  createdOn: '2018-11-26T15:39:32.548Z',
+  type: 'redflag',
+  location: '23674, 56789',
+  status: 'draft',
+  Images: [],
+  Videos: [],
+  comment: 'body of record',
 };
 
 describe('DELETE redflag record', () => {
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .delete('/api/v1/records/41e914a9-96ba-4bda-a406-f86763b41c89')
-      .send(redFlag)
+      .delete('/api/v1/record/2b3b4aee-4c86-4ea6-a45c-1a9c4d7713d6')
+      .send(redFlagDelete)
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.deep.equal({
-          status: 404,
-          error: 'Record deleted successfully',
-        });
         done();
       });
   });
 
   it('should return correct error message', (done) => {
     chai.request(server)
-      .delete('/api/v1/records/41e914a9-96ba-4bda-a407-f86763b41c89/comment')
-      .send(redFlag)
+      .delete('/api/v1/record/2b3b4aee-4c86-4ea6-a45c-1a9c4d7713d3')
+      .send(redFlagDelete)
       .end((err, res) => {
         res.body.should.deep.equal({
           status: 404,
-          error: 'Record not found, Enter a valid id',
+          error: 'Record not found',
         });
         done();
       });

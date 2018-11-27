@@ -15,6 +15,8 @@ app.get('/api/v1/records', User.getAllRecords);
 app.get('/api/v1/records/:id', User.getOneRecord);
 app.put('/api/v1/:id/location', User.updatedLocation);
 app.put('/api/v1/:id/comment', User.updatedComment);
+app.delete('/api/v1/record/:id', User.deleteOneRecord);
+
 // server
 app.listen(port, () => {
   console.log(`Server Started On Port ${port}`);
