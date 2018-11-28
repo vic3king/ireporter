@@ -8,27 +8,31 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _renderui = require('./src/controllers/renderui');
+var _user = require('./src/controllers/user');
 
-var _renderui2 = _interopRequireDefault(_renderui);
+var _user2 = _interopRequireDefault(_user);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
-// server.js
 var app = (0, _express2.default)();
-// eslint-disable-next-line import/no-cycle
-
+var port = process.env.PORT || 3000;
 
 app.use(_express2.default.json());
+app.use('/', _express2.default.static('UI'));
 
-app.get('/api/v1/ui', _renderui2.default);
+app.post('/api/v1/user', _user2.default.createUser);
+app.post('/api/v1/record', _user2.default.createRecord);
+app.get('/api/v1/records', _user2.default.getAllRecords);
+app.get('/api/v1/records/:id', _user2.default.getOneRecord);
+app.put('/api/v1/:id/location', _user2.default.updatedLocation);
+app.put('/api/v1/:id/comment', _user2.default.updatedComment);
+app.delete('/api/v1/record/:id', _user2.default.deleteOneRecord);
 
-app.get('/', function (req, res) {
-  return res.status(200).send();
+// server
+app.listen(port, function () {
+  console.log('Server Started On Port ' + port);
 });
-
-app.listen(3000);
-console.log('app running on port ', 3000);
 
 exports.default = app;

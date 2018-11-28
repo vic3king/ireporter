@@ -4,12 +4,18 @@
   "description": "![iconreport](https://user-images.githubusercontent.com/40821284/48873690-1deb7a80-ede7-11e8-805b-601f26ccaa67.png)",
   "main": "index.js",
   "scripts": {
+    "start": "NODE_ENV=development nodemon --exec babel-node -- server.js ",
+    "heroku-postbuild": "npm run build",
     "test": "nyc mocha src/test --compilers js:babel-core/register --exit",
     "build": "babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
     "cover": "istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "engines": {
+    "node": "10.11.0",
+    "npm": "6.4.1"
   },
   "repository": {
     "type": "git",
