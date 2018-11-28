@@ -27,8 +27,8 @@
     "url": "https://github.com/vic3king/iReporter/issues"
   },
   "homepage": "https://github.com/vic3king/iReporter#readme",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
+  "dependencies": {
+   "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-watch": "^2.0.7",
     "chai": "^4.2.0",
@@ -40,10 +40,11 @@
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0",
-    "travis": "^0.1.1"
-  },
-  "dependencies": {
+    "travis": "^0.1.1",
     "express": "^4.16.4",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+   
   }
 }
