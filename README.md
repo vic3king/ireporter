@@ -2,7 +2,7 @@
 ![iconreport](https://user-images.githubusercontent.com/40821284/48873690-1deb7a80-ede7-11e8-805b-601f26ccaa67.png)
 
 [![Build Status](https://api.travis-ci.org/vic3king/ireporter.svg?branch=development)](https://travis-ci.org/vic3king/ireporter)
-[![Maintainability](https://api.codeclimate.com/v1/badges/128c9747e0b49230e3f3/maintainability)](https://codeclimate.com/github/vic3king/ireporter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8fabcd1e4768eaae07c8/maintainability)](https://codeclimate.com/github/vic3king/ireporter/maintainability)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Continuous Integration](https://camo.githubusercontent.com/23ee7a697b291798079e258bbc25434c4fac4f8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f50726f7465637465645f62792d486f756e642d6138373364312e737667)](https://houndci.com)
 [![Coverage Status](https://coveralls.io/repos/github/vic3king/ireporter/badge.svg)](https://coveralls.io/github/vic3king/ireporter)
