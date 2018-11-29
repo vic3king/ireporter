@@ -4,6 +4,7 @@ class Ireporter {
   /**
    * class constructor
    * @param {object} userInfo
+    * @param {object} recordInfo
    */
   constructor() {
     this.users = [];
@@ -55,6 +56,10 @@ class Ireporter {
     return newUser;
   }
 
+  /**
+   *
+   * @returns {object} records object
+   */
   createRecord(recordInfo) {
     const createRecord = {
       id: uuid.v4(),
@@ -75,12 +80,16 @@ class Ireporter {
   }
 
   /**
-   * @returns {object} returns all reflections
+   * @returns {object} returns all records
    */
   findAllRecords() {
     return this.records;
   }
 
+  /**
+   * @param {uuid} id
+   * @returns {object} returns a record
+   */
   findById(id) {
     return this.records.find(record => record.id === id);
   }
