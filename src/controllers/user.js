@@ -22,7 +22,12 @@ const Ireporter = {
       data: user,
     });
   },
-
+  /**
+   *
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} record object
+   */
   createRecord(req, res) {
     if (!req.body.title || !req.body.type || !req.body.location || !req.body.description || !req.body.comment) {
       return res.status(400).send({
@@ -41,7 +46,7 @@ const Ireporter = {
    *
    * @param {object} req
    * @param {object} res
-   * @returns {object} records array
+   * @returns {object} records object
    */
   getAllRecords(req, res) {
     const records = UserModel.findAllRecords();
@@ -125,8 +130,8 @@ const Ireporter = {
         error: 'Record not found',
       });
     }
-    const ref = UserModel.deleteById(req.params.id);
-    return res.status(200).send(ref);
+    const data = UserModel.deleteById(req.params.id);
+    return res.status(200).send(data);
   },
 };
 
