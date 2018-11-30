@@ -65,7 +65,7 @@ class Ireporter {
       title: recordInfo.title,
       description: recordInfo.description,
       createdOn: new Date(),
-      createdBy: recordInfo.createdBy,
+      createdBy: uuid.v4(),
       type: recordInfo.type,
       location: recordInfo.location,
       status: 'draft',
