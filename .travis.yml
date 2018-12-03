@@ -1,6 +1,11 @@
 language: node_js
 node_js:
 - "stable"
-
+env:
+  global: CC_TEST_REPORTER_ID=edfbf7ff7aa639f36c95084515e03652d480377cf616f6929b37cfdb5dc31535
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 after_success:
 - npm run coverage
