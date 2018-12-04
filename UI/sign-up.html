@@ -6,22 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign up - iReporter </title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesignup.css">
     <link rel="icon" href="images/iconreport.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
     <div class="center"><a href="index.html"><img src="images/iconreport.png" alt="logo"></a>
-        <h1 class="logo">iReporter</h1>
     </div>
     <form class="box" style="margin-top: 80px;">
         <h1>iReporter Sign Up</h1>
-        <input type="text" placeholder="First name">
-        <input type="text" placeholder="Last name">
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <input type="password" placeholder="Confirm Password">
-        <input type="submit" name="" value="Sign Up">
+        <div class="wholeform">
+            <div class="formgroup"><input type="text" placeholder="First name"></div>
+            <div class="formgroup"><input type="text" placeholder="Last name"></div>
+        </div>
+        <div class="wholeform">
+                <div class="formgroup"><input type="text" placeholder="Username"></div>
+                <div class="formgroup"><input type="number" placeholder="PhoneNumber"></div>
+        </div>
+        <div class="wholeform">
+             <div class="formgroup"><input type="password" placeholder="Password"></div>
+            <div class="formgroup"><input type="password" placeholder="Confirm Password"></div>
+        </div>
+            <div class="formgroup submit"><input type="submit" name="" value="Sign Up"></div>
+    </div>
         <p style="text-align: center">Already have an account? <a href="sign-in.html">Login</a></p>
     </form>
 
