@@ -8,11 +8,29 @@ const server = require('../../server').default;
 chai.should();
 chai.use(chaiHttp);
 
+const redFlag = {
+  title: 'Dummy Data',
+  description: 'Dummy data created for testing',
+  createdOn: '2018-11-26T15:39:32.548Z',
+  type: 'redflag',
+  location: '23674, 56789',
+  status: 'draft',
+  Videos: [],
+  comment: 'body of record',
+};
 
 describe('GET /records/:id', () => {
+  beforeEach((done) => {
+    chai.request(server)
+      .post('/api/v1/record')
+      .send(redFlag)
+      .end(() => {
+        done();
+      });
+  });
   it('should get the matching record', (done) => {
     chai.request(server)
-      .get('/api/v1/records/41e914a9-96ba-4bda-a406-f86763b41c89')
+      .get('/api/v1/records/1')
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -21,7 +39,7 @@ describe('GET /records/:id', () => {
 
   it('should return 404 if not found', (done) => {
     chai.request(server)
-      .get('/api/v1/records/41e914a9-96ba-4bda-a406-f86763b41c')
+      .get('/api/v1/records/sv')
       .end((err, res) => {
         res.should.have.status(404);
         done();

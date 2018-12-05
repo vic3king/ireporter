@@ -6,48 +6,24 @@ const Validate = {
     if (!req.body.title || !req.body.type || !req.body.location || !req.body.description || !req.body.comment) {
       return res.status(400).send({
         status: 400,
-        error: 'Could not create the record, Kindly enter required fields',
+        error: {
+          title: 'Title is required',
+          type: 'Type is required',
+          location: 'Location is required',
+          description: 'Description is required',
+          comment: 'comment is required',
+        },
       });
     }
     return next();
   },
 
-  getArecord(req, res, next) {
+  isNotValid(req, res, next) {
     const record = Record.findById(req.params.id);
     if (!record) {
       return res.status(404).send({
         status: 404,
         error: 'Record not found, Enter a valid id',
-      });
-    }
-    return next();
-  },
-  updateLocation(req, res, next) {
-    const record = Record.findById(req.params.id);
-    if (!record) {
-      return res.status(404).send({
-        status: 404,
-        error: 'Record not found, Enter a valid id',
-      });
-    }
-    return next();
-  },
-  updateComment(req, res, next) {
-    const record = Record.findById(req.params.id);
-    if (!record) {
-      return res.status(404).send({
-        status: 404,
-        error: 'Record not found, Enter a valid id',
-      });
-    }
-    return next();
-  },
-  deleteOneRecord(req, res, next) {
-    const record = Record.findById(req.params.id);
-    if (!record) {
-      return res.status(404).send({
-        status: 404,
-        error: 'Record not found',
       });
     }
     return next();
