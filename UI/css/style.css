@@ -4,12 +4,13 @@ body{
   font-family: sans-serif;
   background: white;
 }
+
 a:hover{
   padding-top: 10px;
   border-bottom: white solid;
 }
 .box{
-  width: 300px;
+  width: 50%;
   padding: 20px;
   position: absolute;
   top: 50%;
@@ -18,18 +19,48 @@ a:hover{
   background: black;
   text-align: center;
   color: white;
+  margin-top: 170px !important;
+}
+.signbox{
+  width: 50%;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: black;
+  text-align: center;
+  color: white;
+  margin-top: 78px !important;
 }
 .center {
   position: absolute;
-  top: 17%;
+  top: 7%;
   left: 50%;
   transform: translate(-50%,-50%);
   text-align: center;
   color: black;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.box input{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid white;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
 }
 
 input { font-size: 20px; }
-.box input{
+.signbox input{
   border:0;
   background: none;
   display: block;
@@ -68,3 +99,19 @@ a{
   font-size: 25px;
   text-decoration: none;
 }
+
+/*media queries*/
+
+@media only screen and (max-width: 1000px) {
+  .signbox {
+    width: 100% !important;
+    margin-top: 70px !important;
+  }
+  h1.logo {
+    margin: 15px;
+}
+  .center {
+    margin-bottom: 100px;
+    margin-top: 0px;
+  }
+} 
