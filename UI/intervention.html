@@ -25,38 +25,6 @@
             </nav>
         </div>
     </header>
-    <h4 class="page-title">List of Intervention Records</h4>
-    <button class="accordion">Request: Fix our Roads!!!</button>
-    <div class="panel" id="intervRequestDiv">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <button class="delete-record">Delete</button>
-       <button id="btn4" class="edit-record">Edit</button>
-       <form class="edit-intervention">
-          <div class="box2">
-                <h3 class="page-title">Edit Intervention Request:</h3>
-                <form>
-                  <label for="title">Request For? </label>
-                  <input type="text" name="title" id="title-edit" required>
-                   <label for="description">Description: </label>
-                  <textarea name="description" id="description-edit" rows="4" required></textarea>
-                  <label for="lat">Latitude</label>
-                  <input type="number" name="lat">
-                  <label for="lng">Longitude</label>
-                  <input type="text" name="lng">
-                  <button type="submit">Update Request</button>
-            </div>      
-        </form>
-    </div>
-    <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div>
     <div class="box" id="interventionRequestDiv">
         <h2 class="page-title">Intervention Dashboard </h2>
        <button id="btn2">Make an Intervention Request</button>
@@ -77,7 +45,45 @@
                 <button type="submit">Make Request</button>
           </div>
       </form>
-      
+      <h4 class="page-title">List of Intervention Records</h4>
+      <button class="accordion">Request: Fix our Roads!!!</button>
+      <div class="panel" id="intervRequestDiv">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><br><br><br>
+         <div class="stats">
+           <span>Request Status: Draft</span><br>
+         <span>Created On:<input type="date" id="start" name="trip-start"
+         value="2018-07-22"
+         min="2018-01-01" max="2018-12-31"></span> 
+         </div>
+          <button class="delete-record">Delete</button>
+         <button id="btn4" class="edit-record">Edit</button>
+         <form class="edit-intervention">
+            <div class="box2">
+                  <h3 class="page-title">Edit Intervention Request:</h3>
+                  <form>
+                    <label for="title">Request For? </label>
+                    <input type="text" name="title" id="title-edit" required>
+                     <label for="description">Description: </label>
+                    <textarea name="description" id="description-edit" rows="4" required></textarea>
+                    <label for="lat">Latitude</label>
+                    <input type="number" name="lat">
+                    <label for="lng">Longitude</label>
+                    <input type="text" name="lng">
+                    <button type="submit">Update Request</button>
+              </div>      
+          </form>
+      </div>
+      <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
 <script src="js/scriptinterv.js"></script>
 <script src="js/accordion.js"></script>
 </body>

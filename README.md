@@ -1,4 +1,4 @@
-# iReporter
+# iReporter - https://afternoon-tundra-97957.herokuapp.com/
 ![iconreport](https://user-images.githubusercontent.com/40821284/48873690-1deb7a80-ede7-11e8-805b-601f26ccaa67.png)
 
 [![Build Status](https://api.travis-ci.org/vic3king/ireporter.svg?branch=development)](https://travis-ci.org/vic3king/ireporter)
@@ -30,6 +30,7 @@ event of a false claim) or resolved (in the event that the claim has been invest
 resolved).
 
 ### Extra Features
+
 * Users can add images to their red-flag or intervention records, to support their claims.
 * Users can add videos to their red-flag or intervention records, to support their claims.
 
@@ -37,8 +38,31 @@ resolved).
 
 ### Frontend
 * [Html](https://www.w3schools.com/html/html_intro.asp) HTML is the standard markup language for creating Web pages.
+
 * [CSS](https://www.w3schools.com/css/default.asp) CSS is a language that describes the style of an HTML document.
+
 * [Javascript](https://www.javascript.com/) JavaScript is a programming language that adds interactivity to your website.
+
+### Backend
+
+* [NodeJS](http://nodejs.org/en) is a JavaScript runtime built on Chrome's V8 JavaScript engine
+* [Express JS](http://express.com) A minimalist web framework.
+* [Mocha](https://mochajs.org/) Mocha is a JavaScript test framework, has good integration with [NodeJS](nodejs.org/en) for testing [Javascript](javascript.com) applications.
+* [Chai](http://chaijs.com/) - TDD/BDD Assertion Library for Node
+* [Should](https://www.chaijs.com/guide/styles/#should) - BDD style
+  library for testing node.js HTTP servers
+* [Istanbul(nyc)](https://istanbul.js.org/) - Code Coverage Generator
+
+#### Linter(s)
+
+* [ESLint](https://eslint.org/) - Linter Tool
+
+### Style Guide
+* [Airbnb](https://github.com/airbnb/javascript) - Airbnb maintains a very popular JavaScript Style Guide
+
+#### Compiler
+
+* [Babel](https://eslint.org/) - Compiler for Next Generation JavaScript
 
 ## Pivotal Tracker
 
