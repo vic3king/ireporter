@@ -7,24 +7,29 @@ const server = require('../../server').default;
 chai.should();
 chai.use(chaiHttp);
 
-const redFlagDelete = {
-  id: '2b3b4aee-4c86-4ea6-a45c-1a9c4d7713d6',
-  title: 'Dummy Data2',
+const redFlag = {
+  title: 'Dummy Data',
   description: 'Dummy data created for testing',
   createdOn: '2018-11-26T15:39:32.548Z',
   type: 'redflag',
   location: '23674, 56789',
   status: 'draft',
-  Images: [],
   Videos: [],
   comment: 'body of record',
 };
 
 describe('DELETE redflag record', () => {
+  beforeEach((done) => {
+    chai.request(server)
+      .post('/api/v1/record')
+      .send(redFlag)
+      .end(() => {
+        done();
+      });
+  });
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .delete('/api/v1/record/2b3b4aee-4c86-4ea6-a45c-1a9c4d7713d6')
-      .send(redFlagDelete)
+      .delete('/api/v1/record/1')
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -33,12 +38,11 @@ describe('DELETE redflag record', () => {
 
   it('should return correct error message', (done) => {
     chai.request(server)
-      .delete('/api/v1/record/2b3b4aee-4c86-4ea6-a45c-1a9c4d7713d3')
-      .send(redFlagDelete)
+      .delete('/api/v1/record/25')
       .end((err, res) => {
         res.body.should.deep.equal({
           status: 404,
-          error: 'Record not found',
+          error: 'Record not found, Enter a valid id',
         });
         done();
       });

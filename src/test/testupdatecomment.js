@@ -19,7 +19,7 @@ const redFlag = {
 describe('/PUT Update comment', () => {
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .put('/api/v1/41e914a9-96ba-4bda-a406-f86763b41c89/comment')
+      .put('/api/v1/1/comment')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(200);
@@ -29,7 +29,7 @@ describe('/PUT Update comment', () => {
 
   it('should return an error 404 if record not found', (done) => {
     chai.request(server)
-      .put('/api/v1/41e914a9-96ba-4bda-a407-f86763b41c89/comment')
+      .put('/api/v1/42/comment')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(404);
@@ -39,7 +39,7 @@ describe('/PUT Update comment', () => {
 
   it('should return correct error message', (done) => {
     chai.request(server)
-      .put('/api/v1/41e914a9-96ba-4bda-a407-f86763b41c89/comment')
+      .put('/api/v1/41/comment')
       .send(redFlag)
       .end((err, res) => {
         res.body.should.be.deep.equal({

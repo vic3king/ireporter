@@ -50,7 +50,7 @@ const RecordController = {
    * @returns {object} updated record(location)
    */
   updatedLocation(req, res) {
-    const updatedLocation = Record.updateLocation(req.params.id, req.body);
+    const updatedLocation = Record.updateRecord(req.params.id, req.body);
     return res.status(200).send({
       status: 200,
       data: [updatedLocation],
@@ -64,7 +64,7 @@ const RecordController = {
    * @returns {object} updated record(comment)
    */
   updatedComment(req, res) {
-    const updatedComment = Record.updateComment(req.params.id, req.body);
+    const updatedComment = Record.updateRecord(req.params.id, req.body);
     return res.status(200).send({
       status: 200,
       data: [updatedComment],

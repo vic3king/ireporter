@@ -17,7 +17,7 @@ const dumUser = {
 
 };
 
-describe('/Post create user', () => {
+describe('/Post create new user', () => {
   it('it should Create a new user with correct status code', (done) => {
     chai.request(server)
       .post('/api/v1/user')
