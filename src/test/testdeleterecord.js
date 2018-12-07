@@ -15,13 +15,13 @@ const redFlag = {
   location: '23674, 56789',
   status: 'draft',
   Videos: [],
-  comment: 'body of record',
+  comment: 'body of red-flag',
 };
 
-describe('DELETE redflag record', () => {
+describe('DELETE redflag red-flags', () => {
   beforeEach((done) => {
     chai.request(server)
-      .post('/api/v1/record')
+      .post('/api/v1/red-flags')
       .send(redFlag)
       .end(() => {
         done();
@@ -29,7 +29,7 @@ describe('DELETE redflag record', () => {
   });
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .delete('/api/v1/record/1')
+      .delete('/api/v1/red-flags/1')
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -38,11 +38,11 @@ describe('DELETE redflag record', () => {
 
   it('should return correct error message', (done) => {
     chai.request(server)
-      .delete('/api/v1/record/25')
+      .delete('/api/v1/red-flags/25')
       .end((err, res) => {
         res.body.should.deep.equal({
           status: 404,
-          error: 'Record not found, Enter a valid id',
+          error: 'red-flags not found, Enter a valid id',
         });
         done();
       });

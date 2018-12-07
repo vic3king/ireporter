@@ -18,18 +18,17 @@ const redFlag = {
 describe('/PUT Update location', () => {
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .put('/api/v1/1/location')
+      .put('/api/v1/red-flags/1/location')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(200);
-        // res.body.status.should.be.equal(201);
         done();
       });
   });
 
   it('should return an error 404 if record not found', (done) => {
     chai.request(server)
-      .put('/api/v1/10/location')
+      .put('/api/v1/red-flags/10/location')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(404);
@@ -39,12 +38,12 @@ describe('/PUT Update location', () => {
 
   it('should return correct error message', (done) => {
     chai.request(server)
-      .put('/api/v1/11/location')
+      .put('/api/v1/red-flags/11/location')
       .send(redFlag)
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 404,
-          error: 'Record not found, Enter a valid id',
+          error: 'red-flags not found, Enter a valid id',
         });
         done();
       });

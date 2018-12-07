@@ -12,7 +12,7 @@ const redFlag = {
   description: 'this is a red flag record',
   createdBy: 'victory',
   type: 'record',
-  location: '0900000 ,988990',
+  location: '0.0000, 0.0000',
   comment: 'body of record',
 };
 
@@ -20,7 +20,7 @@ const redFlag = {
 describe('/Post create red-flag', () => {
   it('it should Create a new record with correct status code', (done) => {
     chai.request(server)
-      .post('/api/v1/record')
+      .post('/api/v1/red-flags')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(201);
@@ -31,7 +31,7 @@ describe('/Post create red-flag', () => {
 
   it('it should Create a new record with required fields', (done) => {
     chai.request(server)
-      .post('/api/v1/record')
+      .post('/api/v1/red-flags')
       .send(redFlag)
       .end((err, res) => {
         res.body.data[0].should.have.include.key('title');
