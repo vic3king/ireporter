@@ -20,7 +20,7 @@ class IreporterRecord {
       createdOn: new Date(),
       createdBy: this.records.length + 1,
       type: recordInfo.type,
-      location: recordInfo.location,
+      location: recordInfo.location || '',
       status: 'draft',
       Images: [],
       Videos: [],
@@ -56,8 +56,9 @@ class IreporterRecord {
     const record = this.findById(id);
     const index = this.records.indexOf(record);
     this.records[index].message = 'Updated red-flag record\'s location';
-    this.records[index].location = userInfo.location || userInfo.comment;
-    this.records[index].modefiedOn = new Date();
+    this.records[index].location = userInfo.location;
+    this.records[index].comment = userInfo.comment;
+    this.records[index].modfiedOn = new Date();
     return this.records[index];
   }
 

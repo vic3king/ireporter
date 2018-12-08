@@ -13,7 +13,7 @@ const redFlag = {
   description: 'Dummy data created for testing',
   createdOn: '2018-11-26T15:39:32.548Z',
   type: 'redflag',
-  location: '23674, 56789',
+  location: '0.3674, 0.6789',
   status: 'draft',
   Videos: [],
   comment: 'body of record',
@@ -22,7 +22,7 @@ const redFlag = {
 describe('GET /records/:id', () => {
   beforeEach((done) => {
     chai.request(server)
-      .post('/api/v1/record')
+      .post('/api/v1/red-flags')
       .send(redFlag)
       .end(() => {
         done();
@@ -30,7 +30,7 @@ describe('GET /records/:id', () => {
   });
   it('should get the matching record', (done) => {
     chai.request(server)
-      .get('/api/v1/records/1')
+      .get('/api/v1/red-flags/1')
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -39,7 +39,7 @@ describe('GET /records/:id', () => {
 
   it('should return 404 if not found', (done) => {
     chai.request(server)
-      .get('/api/v1/records/sv')
+      .get('/api/v1/red-flags/sv')
       .end((err, res) => {
         res.should.have.status(404);
         done();
@@ -48,7 +48,7 @@ describe('GET /records/:id', () => {
 
   it('should return 404 path is wrong', (done) => {
     chai.request(server)
-      .get('/api/v1/records/:gh')
+      .get('/api/v1/red-flags/:gh')
       .end((err, res) => {
         res.should.have.status(404);
         done();
