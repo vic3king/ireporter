@@ -15,17 +15,18 @@ body{
 ul {
   margin: -22px 10px 26px;
 }
-.button1{
-  background-color:rgb(248, 72, 72);
+.button1 {
+  background-color: rgb(248, 72, 72);
   display: block;
-  margin: 20px auto;
+  margin: 0px auto;
   text-align: center;
   border: 2px solid white;
-  padding: 14px 40px;
+  padding: 21px 52px;
   color: white;
   cursor: pointer;
-  border-radius: 24px;
-  font-weight: bold;
+  border-radius: 36px;
+  font-weight: bolder;
+  width: -58px;
 }
 .button1:hover{
   background-color: red;
