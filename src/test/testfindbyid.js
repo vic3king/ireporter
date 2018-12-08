@@ -13,7 +13,7 @@ const redFlag = {
   description: 'Dummy data created for testing',
   createdOn: '2018-11-26T15:39:32.548Z',
   type: 'redflag',
-  location: '23674, 56789',
+  location: '0.3674, 0.6789',
   status: 'draft',
   Videos: [],
   comment: 'body of record',

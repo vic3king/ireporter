@@ -11,10 +11,10 @@ app.use(express.json());
 app.use('/', express.static('UI'));
 
 app.post('/api/v1/user', User.createUser);
-app.post('/api/v1/red-flags', Validate.postRecord, Record.createRecord);
+app.post('/api/v1/red-flags', Validate.postRecord, Validate.validLocation, Record.createRecord);
 app.get('/api/v1/red-flags', Record.getAllRecords);
 app.get('/api/v1/red-flags/:id', Validate.isNotValid, Record.getOneRecord);
-app.put('/api/v1/red-flags/:id/location', Validate.isNotValid, Record.updatedLocation);
+app.put('/api/v1/red-flags/:id/location', Validate.isNotValid, Validate.validLocation, Record.updatedLocation);
 app.put('/api/v1/red-flags/:id/comment', Validate.isNotValid, Record.updatedComment);
 app.delete('/api/v1/red-flags/:id', Validate.isNotValid, Record.deleteOneRecord);
 

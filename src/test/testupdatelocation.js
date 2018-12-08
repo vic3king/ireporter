@@ -12,7 +12,7 @@ const redFlag = {
   description: 'this is a red flag record',
   createdBy: 'victory',
   type: 'record',
-  location: '0900000 ,988990',
+  location: '0.0000, 0.8990',
 };
 
 describe('/PUT Update location', () => {
