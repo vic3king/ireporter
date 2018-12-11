@@ -11,7 +11,7 @@ const redFlag = {
   title: 'title of record',
   description: 'this is a red flag record',
   createdBy: 'victory',
-  type: 'record',
+  type: 'intervention',
   location: '0.0000, 0.0000',
   comment: 'body of record',
 };
@@ -20,7 +20,7 @@ const redFlag = {
 describe('/Post create red-flag', () => {
   it('it should Create a new record with correct status code', (done) => {
     chai.request(server)
-      .post('/api/v1/red-flags')
+      .post('/api/v2/incidents')
       .send(redFlag)
       .end((err, res) => {
         res.should.have.status(201);
@@ -31,14 +31,15 @@ describe('/Post create red-flag', () => {
 
   it('it should Create a new record with required fields', (done) => {
     chai.request(server)
-      .post('/api/v1/red-flags')
+      .post('/api/v2/incidents')
       .send(redFlag)
       .end((err, res) => {
-        res.body.data[0].should.have.include.key('title');
-        res.body.data[0].should.have.include.key('createdBy');
-        res.body.data[0].should.have.include.key('type');
-        res.body.data[0].should.have.include.key('location');
-        res.body.data[0].should.have.include.key('description');
+        res.body.data.should.have.include.key('title');
+        res.body.data.should.have.include.key('created_on');
+        res.body.data.should.have.include.key('type');
+        res.body.data.should.have.include.key('location');
+        res.body.data.should.have.include.key('description');
+        res.body.data.should.have.include.key('comment');
         done();
       });
   });

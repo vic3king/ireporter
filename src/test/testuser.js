@@ -10,13 +10,19 @@ chai.use(chaiHttp);
 const dumUser = {
   firstname: 'akaniru',
   lastname: 'victory',
-  othernames: 'ifeanyi',
-  email: 'vic3king@example.com',
+  othernames: 'vic3king',
+  email: 'akanidfruxxassv@gmail.com',
   phoneNumber: '07063212299',
-  username: 'vic3king',
-
+  username: 'veee',
 };
-
+const dumUser2 = {
+  firstname: 'akaniru',
+  lastname: 'victory',
+  othernames: 'vic3king',
+  email: 'akadknirusdxxassv@gmail.com',
+  phoneNumber: '07063212299',
+  username: 'veee',
+};
 describe('/Post create new user', () => {
   it('it should Create a new user with correct status code', (done) => {
     chai.request(server)
@@ -29,12 +35,17 @@ describe('/Post create new user', () => {
       });
   });
 
-  it('it should Create a new user with required fields', (done) => {
+  it('it should Create a new record with required fields', (done) => {
     chai.request(server)
       .post('/api/v1/user')
-      .send(dumUser)
+      .send(dumUser2)
       .end((err, res) => {
-        res.body.data.should.include(dumUser);
+        res.body.data.should.have.include.key('firstname');
+        res.body.data.should.have.include.key('lastname');
+        res.body.data.should.have.include.key('othernames');
+        res.body.data.should.have.include.key('email');
+        res.body.data.should.have.include.key('phonenumber');
+        res.body.data.should.have.include.key('username');
         done();
       });
   });

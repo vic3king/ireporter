@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 import moment from 'moment';
 import db from '../db';
@@ -28,9 +29,15 @@ const Record = {
 
     try {
       const { rows } = await db.query(text, values);
-      return res.status(201).send(rows[0]);
+      return res.status(201).send({
+        status: 201,
+        data: rows[0],
+      });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        message: 'enter a valid type e.g (red-flag, intervention)',
+      });
     }
   },
   /**
@@ -43,9 +50,16 @@ const Record = {
     const findAllQuery = 'SELECT * FROM records';
     try {
       const { rows, rowCount } = await db.query(findAllQuery);
-      return res.status(200).send({ rows, rowCount });
+      return res.status(200).send({
+        status: 200,
+        data: rows,
+        rowCount,
+      });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(500).send({
+        status: 500,
+        message: 'server error',
+      });
     }
   },
   /**
@@ -59,11 +73,20 @@ const Record = {
     try {
       const { rows } = await db.query(text, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({ message: 'record not found' });
+        return res.status(404).send({
+          status: 404,
+          message: 'record not found',
+        });
       }
-      return res.status(200).send(rows[0]);
+      return res.status(200).send({
+        status: 200,
+        data: rows[0],
+      });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
     }
   },
   /**
@@ -72,26 +95,64 @@ const Record = {
    * @param {object} res
    * @returns {object} updated record
    */
-  async updateRecord(req, res) {
+  async updateLocation(req, res) {
     const findOneQuery = 'SELECT * FROM records WHERE id=$1';
     const updateOneQuery = `UPDATE records
-      SET location=$1,comment=$2,modified_date=$3
-      WHERE id=$5 returning *`;
+      SET location=$1,modefied_on=$2
+      WHERE id=$3 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({ message: 'record not found' });
+        return res.status(404).send({
+          status: 404,
+          message: 'record not found',
+        });
       }
       const values = [
-        req.body.location || rows[0].location,
-        req.body.comment || rows[0].comment,
+        req.body.location,
         moment(new Date()),
         req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);
-      return res.status(200).send(response.rows[0]);
+      return res.status(200).send({
+        status: 200,
+        data: response.rows[0],
+      });
     } catch (err) {
-      return res.status(400).send(err);
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
+    }
+  },
+  async updateComment(req, res) {
+    const findOneQuery = 'SELECT * FROM records WHERE id=$1';
+    const updateOneQuery = `UPDATE records
+      SET comment=$1,modefied_on=$2
+      WHERE id=$3 returning *`;
+    try {
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'record not found',
+        });
+      }
+      const values = [
+        req.body.comment,
+        moment(new Date()),
+        req.params.id,
+      ];
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).send({
+        status: 200,
+        data: response.rows[0],
+      });
+    } catch (err) {
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
     }
   },
   /**
@@ -105,11 +166,17 @@ const Record = {
     try {
       const { rows } = await db.query(deleteQuery, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({ message: 'record not found' });
+        return res.status(404).send({
+          status: 404,
+          message: 'record not found',
+        });
       }
-      return res.status(204).send({ message: 'deleted' });
+      return res.status(200).send({ message: 'deleted succesfully' });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
     }
   },
 };

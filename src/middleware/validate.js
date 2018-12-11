@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
-import validator from 'validator';
-import Record from '../models/record';
+import { isLatLong } from 'validator';
+// import Record from '../models/record';
 
 const Validate = {
   validLocation(req, res, next) {
     const longLat = req.body.location.trim();
-    if (!validator.isLatLong(longLat)) {
+    if (!isLatLong(longLat)) {
       return res.status(400).send({
         status: 400,
         message: 'Invalid location, please ensure you have valid cordinates. e.g 0.00000,0.00000',

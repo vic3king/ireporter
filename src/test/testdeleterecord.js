@@ -10,26 +10,27 @@ chai.use(chaiHttp);
 const redFlag = {
   title: 'Dummy Data',
   description: 'Dummy data created for testing',
-  createdOn: '2018-11-26T15:39:32.548Z',
-  type: 'redflag',
+  created_on: '2018-11-26T15:39:32.548Z',
+  type: 'red-flag',
   location: '0.3674, 0.6789',
   status: 'draft',
-  Videos: [],
   comment: 'body of red-flag',
 };
 
 describe('DELETE redflag red-flags', () => {
+  let id = 1000;
   beforeEach((done) => {
     chai.request(server)
-      .post('/api/v1/red-flags')
+      .post('/api/v2/incidents')
       .send(redFlag)
-      .end(() => {
+      .end((err, res) => {
+        id = res.body.data.id;
         done();
       });
   });
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .delete('/api/v1/red-flags/1')
+      .delete(`/api/v2/incidents/${id}`)
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -38,11 +39,11 @@ describe('DELETE redflag red-flags', () => {
 
   it('should return correct error message', (done) => {
     chai.request(server)
-      .delete('/api/v1/red-flags/25')
+      .delete('/api/v2/incidents/25')
       .end((err, res) => {
         res.body.should.deep.equal({
           status: 404,
-          error: 'red-flags not found, Enter a valid id',
+          message: 'record not found',
         });
         done();
       });
