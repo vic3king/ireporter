@@ -47,7 +47,7 @@ const dropType = () => {
 /**
  * Create Tables
  */
-const createTables = () => {
+const createRecordTable = () => {
   const queryText = `
   CREATE TABLE IF NOT EXISTS
       records(
@@ -59,20 +59,43 @@ const createTables = () => {
         status stat NOT NULL,
         comment VARCHAR(128) NOT NULL,
         message VARCHAR(50) NOT NULL,
-        modefied_on TIMESTAMP,
-        created_on TIMESTAMP
-      );
+        images VARCHAR[] DEFAULT '{}',
+        videos VARCHAR[] DEFAULT '{}',
+        modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        owner_id serial NOT NULL,
+        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (owner_id) REFERENCES users (id) ON DELETE CASCADE
       
-      CREATE TABLE IF NOT EXISTS
+      );
+      `;
+
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err.message);
+      pool.end();
+    });
+};
+/**
+ * Create Tables
+ */
+const createUserTable = () => {
+  const queryText = ` 
+     CREATE TABLE IF NOT EXISTS
       users(
         id serial PRIMARY KEY,
         firstname VARCHAR(50) NOT NULL,
         lastname VARCHAR(50) NOT NULL,
         othernames VARCHAR(50) NOT NULL,
+        password VARCHAR(128) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
-        phoneNumber VARCHAR(50) NOT NULL,
+        phoneNumber VARCHAR(128) NOT NULL,
         username VARCHAR(50) NOT NULL,
-        registered TIMESTAMP,
+        registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         isAdmin boolean NOT NULL DEFAULT false
       )
       `;
@@ -83,7 +106,7 @@ const createTables = () => {
       pool.end();
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.message);
       pool.end();
     });
 };
@@ -104,14 +127,17 @@ const dropTables = () => {
       pool.end();
     });
 };
-
-pool.on('remove', () => {
-  console.log('client removed');
-  process.exit(0);
-});
-
+/**
+ * Create All Tables
+ */
+const createAllTables = () => {
+  createUserTable();
+  createRecordTable();
+};
 module.exports = {
-  createTables,
+  createAllTables,
+  createRecordTable,
+  createUserTable,
   dropTables,
   createType,
   dropType,

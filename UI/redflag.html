@@ -11,6 +11,21 @@
 </head>
 </head>
 <body>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf2fhPBsGoCDbZRUCnZGqUQJJRhGFRej8&libraries=places"></script>
+        <script type="text/javascript" > 
+            google.maps.event.addDomListener(window, 'load', initialize);
+            function initialize() {
+                let autoComplete = new google.maps.places.Autocomplete(document.getElementById('search_term'));
+                google.maps.event.addListener(autoComplete, 'place_changed', function() {
+                    let places = autoComplete.getPlace();
+                    let lat = places.geometry.location.lat()
+                    let lng = places.geometry.location.lng()
+                    document.getElementById('lat').value = lat;
+                    document.getElementById('lng').value = lat;
+                }) 
+               
+            }   
+                </script>
     <header>
         <div class="container">
             <div id="branding"> <a href="index.html">
@@ -36,10 +51,12 @@
               <input type="text" placeholder="what is happening around you?" name="title" id="title" required>
                <label for="description">Description: </label>
               <textarea name="description" id="description" rows="4" required></textarea>
+              <label for="address">Address</label>
+              <input type="text" id="search_term" placeholder="enter your address" name="address" >
               <label for="lat">Latitude</label>
-              <input type="number" placeholder="where are you? enter Latitude eg 45.002440" name="lat">
+              <input type="text" id="lat" placeholder="where are you? enter Latitude eg 45.002440" name="lat">
               <label for="lng">Longitude</label>
-              <input type="text" placeholder="where are you? enter Longitute eg -90.810480" name="lng">
+              <input type="text" id="lng" placeholder="where are you? enter Longitute eg -90.810480" name="lng">
               <label for="image">Upload a file(e.g video, image)</label>
               <input type="file" name="image" id="image" multiple>
               <button type="submit">Save Record</button>
@@ -50,6 +67,8 @@
     <div class="panel" id="redFlagAccordDiv">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><br><br><br>
+           <a target="_blank" href="images/black-and-white-dark-marble-908283.jpg">
+                <img class="img" src="images/black-and-white-dark-marble-908283.jpg" alt="Forest"> </a>
            <div class="stats">
              <span>Incident Status: Draft</span><br>
            <span>Created On:<input type="date" id="start" name="trip-start"
@@ -66,10 +85,12 @@
                 <input type="text" name="title" id="title-edit" required>
                  <label for="description">Description: </label>
                 <textarea name="description" id="description-edit" rows="4" required></textarea>
-              <label for="lat">Latitude</label>
-              <input type="number" name="lat">
-              <label for="lng">Longitude</label>
-              <input type="text" name="lng">
+                <label for="address">Address</label>
+                <input type="text" id="search_term" placeholder="enter your address" name="address" >
+                <label for="lat">Latitude</label>
+                <input type="text" id="lat" placeholder="where are you? enter Latitude eg 45.002440" name="lat">
+                <label for="lng">Longitude</label>
+                <input type="text" id="lng" placeholder="where are you? enter Longitute eg -90.810480" name="lng">
                 <button type="submit">Update Record</button>
           </div>
       </form>
