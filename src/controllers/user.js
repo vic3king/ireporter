@@ -1,26 +1,91 @@
-/* eslint-disable max-len */
-import UserModel from '../models/user';
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
+import db from '../db';
+import Helper from './Helper';
 
-const UserController = {
+const User = {
   /**
-   * Creates a new user.
-   *
+   * Create A User
    * @param {object} req
    * @param {object} res
    * @returns {object} user object
    */
-  createUser(req, res) {
-    if (!req.body.firstname || !req.body.lastname || !req.body.othernames || !req.body.email || !req.body.phoneNumber || !req.body.username) {
-      return res.status(400).send({
-        status: 400,
-        error: 'Could not create user, All fields are required',
-      });
+  async createUser(req, res) {
+    if (!req.body.email || !req.body.password) {
+      return res.status(400).send({ message: 'Some values are missing' });
     }
-    const user = UserModel.createUser(req.body);
-    return res.status(201).send({
-      status: 201,
-      data: user,
-    });
+    if (!Helper.isValidEmail(req.body.email)) {
+      return res.status(400).send({ message: 'Please enter a valid email address' });
+    }
+    const hashPassword = Helper.hashPassword(req.body.password);
+    const text = `INSERT INTO
+      users(firstname, lastname, othernames, email, phoneNumber, username, password)
+      VALUES($1, $2, $3, $4, $5, $6, $7)
+      returning *`;
+    const values = [
+      req.body.firstname,
+      req.body.lastname,
+      req.body.othernames,
+      req.body.email,
+      req.body.phoneNumber,
+      req.body.username,
+      hashPassword,
+    ];
+
+    try {
+      const { rows } = await db.query(text, values);
+      const token = Helper.generateToken(rows[0].id, rows[0].isAdmin);
+      return res.status(201).send({
+        status: 201,
+        data: [{
+          token,
+          user: rows[0],
+        }],
+      });
+    } catch (error) {
+      if (error.routine === '_bt_check_unique') {
+        return res.status(400).send({ message: 'User with that EMAIL already exist' });
+      }
+      return res.status(400).send(error.message);
+    }
   },
+
+  /**
+   * Login
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} user object
+   */
+  async login(req, res) {
+    if (!req.body.email || !req.body.password) {
+      return res.status(400).send({ message: 'Some values are missing' });
+    }
+    if (!Helper.isValidEmail(req.body.email)) {
+      return res.status(400).send({ message: 'Please enter a valid email address' });
+    }
+    const text = 'SELECT * FROM users WHERE email = $1';
+    try {
+      const { rows } = await db.query(text, [req.body.email]);
+      if (!rows[0]) {
+        return res.status(400).send({ message: 'The credentials you provided is incorrect' });
+      }
+      if (!Helper.comparePassword(rows[0].password, req.body.password)) {
+        return res.status(400).send({ message: 'The credentials you provided is incorrect' });
+      }
+      const token = Helper.generateToken(rows[0].id, rows[0].isadmin);
+      return res.status(200).send({
+        status: 200,
+        data: [{
+          token,
+          user: rows[0],
+        }],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+
 };
-export default UserController;
+
+export default User;

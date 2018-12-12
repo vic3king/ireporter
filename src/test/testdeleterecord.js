@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 /* eslint-disable import/no-extraneous-dependencies */
 const chai = require('chai');
@@ -6,30 +7,54 @@ const server = require('../../server').default;
 
 chai.should();
 chai.use(chaiHttp);
-
-const redFlag = {
+const user = {
+  firstname: 'akaniru',
+  lastname: 'precious',
+  othernames: 'vic3king',
+  email: `${25555 * Math.random()}@gmail.com`,
+  password: '2020ada',
+  phoneNumber: '07063212299',
+  username: 'veee',
+};
+const record = {
   title: 'Dummy Data',
   description: 'Dummy data created for testing',
-  createdOn: '2018-11-26T15:39:32.548Z',
-  type: 'redflag',
+  created_on: '2018-11-26T15:39:32.548Z',
+  type: 'red-flag',
   location: '0.3674, 0.6789',
   status: 'draft',
-  Videos: [],
   comment: 'body of red-flag',
 };
+let jwToken;
+let id;
 
-describe('DELETE redflag red-flags', () => {
-  beforeEach((done) => {
+describe('DELETE record red-flags', () => {
+  before((done) => {
     chai.request(server)
-      .post('/api/v1/red-flags')
-      .send(redFlag)
-      .end(() => {
+      .post('/api/v2/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        jwToken = res.body.data[0].token;
         done();
       });
   });
+  before((done) => {
+    chai.request(server)
+      .post('/api/v2/incidents')
+      .set('x-access-token', jwToken)
+      .send(record)
+      .end((err, res) => {
+        console.log(res.body);
+        id = res.body.data.id;
+        done();
+      });
+  });
+
+
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .delete('/api/v1/red-flags/1')
+      .delete(`/api/v2/incidents/${id}`)
+      .set('x-access-token', jwToken)
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -38,11 +63,11 @@ describe('DELETE redflag red-flags', () => {
 
   it('should return correct error message', (done) => {
     chai.request(server)
-      .delete('/api/v1/red-flags/25')
+      .delete('/api/v2/incidents/25')
       .end((err, res) => {
         res.body.should.deep.equal({
-          status: 404,
-          error: 'red-flags not found, Enter a valid id',
+          status: 400,
+          message: 'Token is not provided',
         });
         done();
       });

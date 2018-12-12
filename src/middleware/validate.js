@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
-import validator from 'validator';
-import Record from '../models/record';
+import { isLatLong } from 'validator';
+import jwt from 'jsonwebtoken';
+
 
 const Validate = {
   validLocation(req, res, next) {
     const longLat = req.body.location.trim();
-    if (!validator.isLatLong(longLat)) {
+    if (!isLatLong(longLat)) {
       return res.status(400).send({
         status: 400,
         message: 'Invalid location, please ensure you have valid cordinates. e.g 0.00000,0.00000',
@@ -41,12 +42,16 @@ const Validate = {
     return next();
   },
 
-  isNotValid(req, res, next) {
-    const record = Record.findById(req.params.id);
-    if (!record) {
-      return res.status(404).send({
-        status: 404,
-        error: 'red-flags not found, Enter a valid id',
+  async isAdmin(req, res, next) {
+    const token = req.headers['x-access-token'];
+    if (!token) {
+      return res.status(400).send({ message: 'Token is not provided' });
+    }
+    const decoded = await jwt.verify(token, process.env.SECRET);
+    if (decoded.isAdmin === false) {
+      return res.status(400).json({
+        status: 400,
+        error: 'only admin users have access to this route',
       });
     }
     return next();

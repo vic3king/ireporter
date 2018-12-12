@@ -18,11 +18,19 @@ describe('UI routes', () => {
       });
   });
 
-  it('it should throw a 400 on other methods', (done) => {
+  it('it should throw a 400 on bad request', (done) => {
     chai.request(server)
       .post('/')
       .end((err, res) => {
-        res.should.have.status(404);
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('it should throw a 404 when not found', (done) => {
+    chai.request(server)
+      .get('/ui')
+      .end((err, res) => {
+        res.should.have.status(400);
         done();
       });
   });
