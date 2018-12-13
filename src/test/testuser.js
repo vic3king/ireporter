@@ -31,6 +31,7 @@ describe('CREATE a user', () => {
       });
   });
 
+
   it('should return correct error when created without token', (done) => {
     chai.request(server)
       .post('/api/v2/signup')

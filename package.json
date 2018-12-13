@@ -11,7 +11,7 @@
     "cover": "istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "createdb": "psql -f ./db.sql"
+    "createdb": "psql -f ./db.sql -U postgres"
   },
   "engines": {
     "node": "10.11.0",
