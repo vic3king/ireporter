@@ -24,9 +24,9 @@ router.get('/api/v2/incidents/type/:type', Auth.verifyToken, dbRecordsController
 
 router.get('/api/v2/incidents/:id', Auth.verifyToken, dbRecordsController.getOneRecord);
 
-router.put('/api/v2/incidents/:id/location', Validate.validLocation, Auth.verifyToken, dbRecordsController.update);
+router.put('/api/v2/incidents/:id/location', Validate.validLocation, Auth.verifyToken, dbRecordsController.updateLocation);
 
-router.put('/api/v2/incidents/:id/comment', Auth.verifyToken, dbRecordsController.update);
+router.put('/api/v2/incidents/:id/comment', Auth.verifyToken, dbRecordsController.updateComment);
 
 router.put('/api/v2/incidents/:id/status', Auth.verifyToken, Validate.isAdmin, dbRecordsController.updateStatus);
 
@@ -36,5 +36,11 @@ router.post('/api/v2/auth/signup', Validate.isValidInput, User.createUser);
 
 router.post('/api/v2/auth/login', User.login);
 
+router.all('*', (req, res) => {
+  res.status(400).send({
+    status: 400,
+    message: 'invalid route',
+  });
+});
 
 export default router;

@@ -120,17 +120,10 @@ const Record = {
    * @param {object} res
    * @returns {object} updated record
    */
-  async update(req, res) {
-    let type;
-    if (req.body.location) {
-      type = 'location';
-    } else if (req.body.comment) {
-      type = 'comment';
-    }
-
+  async updateComment(req, res) {
     const findOneQuery = 'SELECT * FROM records WHERE id = $1 AND owner_id = $2';
     const updateOneQuery = `UPDATE records
-    SET ${type}=$1
+    SET comment=$1
     WHERE id=$2 AND owner_id = $3 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id, req.user.id]);
@@ -141,7 +134,38 @@ const Record = {
         });
       }
       const values = [
-        req.body.location || req.body.comment || req.body.status,
+        req.body.comment,
+        req.params.id,
+        req.user.id,
+      ];
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).send({
+        status: 200,
+        data: response.rows[0],
+      });
+    } catch (err) {
+      return res.status(400).send({
+        status: 400,
+        error: err.message,
+      });
+    }
+  },
+
+  async updateLocation(req, res) {
+    const findOneQuery = 'SELECT * FROM records WHERE id = $1 AND owner_id = $2';
+    const updateOneQuery = `UPDATE records
+    SET location=$1
+    WHERE id=$2 AND owner_id = $3 returning *`;
+    try {
+      const { rows } = await db.query(findOneQuery, [req.params.id, req.user.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          error: 'record not found',
+        });
+      }
+      const values = [
+        req.body.location,
         req.params.id,
         req.user.id,
       ];
