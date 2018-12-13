@@ -13,8 +13,8 @@ const user = {
   othernames: 'vic3king',
   email: `${25555 * Math.random()}@gmail.com`,
   password: '2020ada',
-  phoneNumber: '07063212299',
-  username: 'veee',
+  phoneNumber: '07063992299',
+  username: 'veelloe',
 };
 const record = {
   title: 'Dummy Data',
@@ -28,7 +28,7 @@ const record = {
 let jwToken;
 let id;
 
-describe('DELETE record red-flags', () => {
+describe('DELETE a record', () => {
   before((done) => {
     chai.request(server)
       .post('/api/v2/auth/signup')
@@ -44,7 +44,6 @@ describe('DELETE record red-flags', () => {
       .set('x-access-token', jwToken)
       .send(record)
       .end((err, res) => {
-        console.log(res.body);
         id = res.body.data.id;
         done();
       });

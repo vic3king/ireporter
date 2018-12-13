@@ -18,11 +18,11 @@ describe('UI routes', () => {
       });
   });
 
-  it('it should throw a 400 on bad request', (done) => {
+  it('it should throw a 40d on bad request', (done) => {
     chai.request(server)
       .post('/')
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(404);
         done();
       });
   });
@@ -30,7 +30,7 @@ describe('UI routes', () => {
     chai.request(server)
       .get('/ui')
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(404);
         done();
       });
   });

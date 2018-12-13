@@ -7,45 +7,36 @@ const server = require('../../server').default;
 chai.should();
 chai.use(chaiHttp);
 
-const dumUser = {
-  firstname: 'akaniru',
-  lastname: 'victory',
+const user = {
+  firstname: 'akani',
+  lastname: 'precious',
   othernames: 'vic3king',
-  email: 'akanidfruxxassv@gmail.com',
-  phoneNumber: '07063212299',
-  username: 'veee',
+  email: 'akannirxu@gmail.com',
+  password: '2020ada',
+  phoneNumber: '09063212299',
+  username: 'veeee',
 };
-const dumUser2 = {
-  firstname: 'akaniru',
-  lastname: 'victory',
-  othernames: 'vic3king',
-  email: 'akadknirusdxxassv@gmail.com',
-  phoneNumber: '07063212299',
-  username: 'veee',
-};
-describe('/Post create new user', () => {
-  it('it should Create a new user with correct status code', (done) => {
+
+let jwToken;
+
+describe('CREATE a user', () => {
+  before((done) => {
     chai.request(server)
-      .post('/api/v1/user')
-      .send(dumUser)
+      .post('/api/v2/auth/signup')
+      .send(user)
       .end((err, res) => {
+        jwToken = res.body.data[0].token;
         res.should.have.status(201);
-        res.body.status.should.be.equal(201);
         done();
       });
   });
 
-  it('it should Create a new record with required fields', (done) => {
+
+  it('should return correct error when created without token', (done) => {
     chai.request(server)
-      .post('/api/v1/user')
-      .send(dumUser2)
+      .post('/api/v2/signup')
       .end((err, res) => {
-        res.body.data.should.have.include.key('firstname');
-        res.body.data.should.have.include.key('lastname');
-        res.body.data.should.have.include.key('othernames');
-        res.body.data.should.have.include.key('email');
-        res.body.data.should.have.include.key('phonenumber');
-        res.body.data.should.have.include.key('username');
+        res.should.have.status(404);
         done();
       });
   });

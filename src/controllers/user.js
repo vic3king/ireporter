@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 import db from '../db';
-import Helper from './Helper';
+import Helper from '../middleware/helper';
 
 const User = {
   /**

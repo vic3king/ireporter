@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { isLatLong } from 'validator';
 import jwt from 'jsonwebtoken';
-
+import db from '../db';
 
 const Validate = {
   validLocation(req, res, next) {
@@ -15,17 +15,28 @@ const Validate = {
     return next();
   },
 
+  async isValidInput(req, res, next) {
+    const findOneQuery = 'SELECT * FROM users WHERE username=$1 OR phonenumber=$2 OR email=$3';
+    const { rows } = await db.query(findOneQuery, [req.body.username, req.body.phonenumber, req.body.email]);
+    if (rows[0]) {
+      return res.status(404).send({
+        status: 404,
+        error: 'username, phonenumber or email already exists',
+      });
+    }
+    return next();
+  },
   postRecord(req, res, next) {
     const errorsMessages = [];
-    if (!req.body.title) {
+    if (!req.body.title || req.body.tile === null) {
       const error = { title: 'Title is required' };
       errorsMessages.push(error);
     }
-    if (!req.body.type) {
+    if (!req.body.type || req.body.type === null) {
       const error = { type: 'Type is required' };
       errorsMessages.push(error);
     }
-    if (!req.body.description) {
+    if (!req.body.description || req.body.description === null) {
       const error = { description: 'A Description is required' };
       errorsMessages.push(error);
     }
