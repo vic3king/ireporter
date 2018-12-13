@@ -39,7 +39,7 @@ describe('Get a specific record by ID', () => {
         done();
       });
   });
-  before((done) => {
+  beforeEach((done) => {
     chai.request(server)
       .post('/api/v2/incidents')
       .set('x-access-token', jwToken)
