@@ -32,7 +32,7 @@ router.put('/api/v2/incidents/:id/status', Auth.verifyToken, Validate.isAdmin, d
 
 router.delete('/api/v2/incidents/:id', Auth.verifyToken, dbRecordsController.delete);
 
-router.post('/api/v2/auth/signup', User.createUser);
+router.post('/api/v2/auth/signup', Validate.isValidInput, User.createUser);
 
 router.post('/api/v2/auth/login', User.login);
 

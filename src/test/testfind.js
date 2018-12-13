@@ -13,8 +13,8 @@ const user = {
   othernames: 'vic3king',
   email: `${25555 * Math.random()}@gmail.com`,
   password: '2020ada',
-  phoneNumber: '07063212299',
-  username: 'veee',
+  phoneNumber: '07060212299',
+  username: 'veeeopl',
 };
 const record = {
   title: 'Dummy Data',
@@ -25,9 +25,10 @@ const record = {
   status: 'draft',
   comment: 'body of red-flag',
 };
-
 let jwToken;
-describe('GET all Records', () => {
+let idD;
+
+describe('Get all records', () => {
   before((done) => {
     chai.request(server)
       .post('/api/v2/auth/signup')
@@ -37,11 +38,36 @@ describe('GET all Records', () => {
         done();
       });
   });
-  it('should get all existing records', (done) => {
+  before((done) => {
     chai.request(server)
-      .get('/api/v2/incidents')
+      .post('/api/v2/incidents')
+      .set('x-access-token', jwToken)
+      .send(record)
+      .end((err, res) => {
+        idD = res.body.data.id;
+        done();
+      });
+  });
+
+
+  it('should return a success status 200', (done) => {
+    chai.request(server)
+      .get(`/api/v2/incidents/${idD}`)
+      .set('x-access-token', jwToken)
       .end((err, res) => {
         res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('should return correct error message', (done) => {
+    chai.request(server)
+      .delete('/api/v2/incidents/25')
+      .end((err, res) => {
+        res.body.should.deep.equal({
+          status: 400,
+          message: 'Token is not provided',
+        });
         done();
       });
   });

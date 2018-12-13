@@ -4,7 +4,7 @@ import db from '../db';
 
 const Record = {
   /**
-   * Create A Recod
+   * Creates A Recod
    * @param {object} req
    * @param {object} res
    * @returns {object} record object
@@ -32,18 +32,17 @@ const Record = {
         data: rows[0],
       });
     } catch (error) {
-      console.log(error.message);
       return res.status(400).send({
         status: 400,
-        message: 'enter a valid type e.g (red-flag, intervention)',
+        error: 'enter a valid type e.g (red-flag, intervention)',
       });
     }
   },
   /**
-   * Get All Record
+   * Gets All Records
    * @param {object} req
    * @param {object} res
-   * @returns {object} records array
+   * @returns {object} records object
    */
   async getAllRecords(req, res) {
     const findAllQuery = 'SELECT * FROM records';
@@ -57,7 +56,7 @@ const Record = {
     } catch (error) {
       return res.status(500).send({
         status: 500,
-        message: error.message,
+        error: error.message,
       });
     }
   },
@@ -74,7 +73,7 @@ const Record = {
       if (!rows[0]) {
         return res.status(404).send({
           status: 404,
-          message: 'record not found',
+          error: 'record not found',
         });
       }
       return res.status(200).send({
@@ -111,7 +110,7 @@ const Record = {
     } catch (error) {
       return res.status(400).send({
         status: 400,
-        error: error.message,
+        error: 'enter a valid type. e.g red-flag, intervention',
       });
     }
   },
@@ -138,7 +137,7 @@ const Record = {
       if (!rows[0]) {
         return res.status(404).send({
           status: 404,
-          message: 'record not found',
+          error: 'record not found',
         });
       }
       const values = [

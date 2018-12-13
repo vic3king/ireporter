@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 import db from '../db';
-import Helper from './Helper';
+import Helper from '../middleware/helper';
 
 const User = {
   /**
@@ -11,6 +11,7 @@ const User = {
    * @returns {object} user object
    */
   async createUser(req, res) {
+    console.log('createUser'+JSON.stringify(req.body));
     if (!req.body.email || !req.body.password) {
       return res.status(400).send({ message: 'Some values are missing' });
     }

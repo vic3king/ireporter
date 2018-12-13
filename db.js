@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
-const { Pool } = require('pg');
+const {
+  Pool,
+} = require('pg');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -21,11 +23,9 @@ const createType = () => {
   pool.query(type)
     .then((res) => {
       console.log(res);
-      pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
     });
 };
 
@@ -35,11 +35,9 @@ const dropType = () => {
   pool.query(type)
     .then((res) => {
       console.log(res);
-      pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
     });
 };
 
@@ -47,7 +45,7 @@ const dropType = () => {
 /**
  * Create Tables
  */
-const createRecordTable = () => {
+const createRecordTable = async () => {
   const queryText = `
   CREATE TABLE IF NOT EXISTS
       records(
@@ -59,8 +57,8 @@ const createRecordTable = () => {
         status stat NOT NULL,
         comment VARCHAR(128) NOT NULL,
         message VARCHAR(50) NOT NULL,
-        images VARCHAR[] DEFAULT '{}',
-        videos VARCHAR[] DEFAULT '{}',
+        images VARCHAR[],
+        videos VARCHAR[],
         modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         owner_id serial NOT NULL,
         created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -69,20 +67,18 @@ const createRecordTable = () => {
       );
       `;
 
-  pool.query(queryText)
+  await pool.query(queryText)
     .then((res) => {
       console.log(res);
-      pool.end();
     })
     .catch((err) => {
       console.log(err.message);
-      pool.end();
     });
 };
 /**
  * Create Tables
  */
-const createUserTable = () => {
+const createUserTable = async () => {
   const queryText = ` 
      CREATE TABLE IF NOT EXISTS
       users(
@@ -92,48 +88,47 @@ const createUserTable = () => {
         othernames VARCHAR(50) NOT NULL,
         password VARCHAR(128) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
-        phoneNumber VARCHAR(128) NOT NULL,
-        username VARCHAR(50) NOT NULL,
+        phoneNumber VARCHAR(128) NOT NULL UNIQUE,
+        username VARCHAR(50) NOT NULL UNIQUE,
         registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         isAdmin boolean NOT NULL DEFAULT false
       )
       `;
 
-  pool.query(queryText)
+  await pool.query(queryText)
     .then((res) => {
       console.log(res);
-      pool.end();
     })
     .catch((err) => {
       console.log(err.message);
-      pool.end();
     });
 };
 
 /**
  * Drop Tables
  */
-const dropTables = () => {
+const dropTables = async () => {
   const queryText = `DROP TABLE IF EXISTS records;
   DROP TABLE IF EXISTS users`;
-  pool.query(queryText)
+  await pool.query(queryText)
     .then((res) => {
       console.log(res);
-      pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
     });
 };
 /**
  * Create All Tables
  */
-const createAllTables = () => {
-  createUserTable();
-  createRecordTable();
+const createAllTables = async () => {
+  await dropTables();
+  await createUserTable();
+  await createRecordTable();
+  pool.end();
 };
+
 module.exports = {
   createAllTables,
   createRecordTable,
