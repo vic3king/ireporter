@@ -74,7 +74,7 @@ const User = {
       }
       const token = Helper.generateToken(rows[0].id, rows[0].isadmin);
       const {
-        firstname, lastname, othernames, email, phoneNumber, username, isAdmin,
+        firstname, lastname, othernames, email, phoneNumber, username, isadmin,
       } = rows[0];
       const user = {
         firstname,
@@ -83,8 +83,9 @@ const User = {
         email,
         phoneNumber,
         username,
-        isAdmin,
+        isadmin,
       };
+      console.log(user);
       return res.status(200).send({
         status: 200,
         data: [{
