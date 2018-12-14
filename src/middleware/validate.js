@@ -1,12 +1,12 @@
-/* eslint-disable no-useless-escape */
 /* eslint-disable max-len */
+import { isLatLong } from 'validator';
 import jwt from 'jsonwebtoken';
 import db from '../db';
 
 const Validate = {
   validLocation(req, res, next) {
     const longLat = req.body.location.trim();
-    if (/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/gm.test(longLat)) {
+    if (!isLatLong(longLat)) {
       return res.status(400).send({
         status: 400,
         message: 'Invalid location, please ensure you have valid cordinates. e.g 0.00000,0.00000',
