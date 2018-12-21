@@ -21,14 +21,14 @@ const User = {
     const text = `INSERT INTO
       users(firstname, lastname, othernames, email, phoneNumber, username, password)
       VALUES($1, $2, $3, $4, $5, $6, $7)
-      returning *`;
+      returning id,firstname,lastname,username,isadmin`;
     const values = [
-      req.body.firstname,
-      req.body.lastname,
-      req.body.othernames,
-      req.body.email,
-      req.body.phoneNumber,
-      req.body.username,
+      req.body.firstname.toString().trim(),
+      req.body.lastname.toString().trim(),
+      req.body.othernames.toString().trim(),
+      req.body.email.toString().trim(),
+      req.body.phoneNumber.toString().trim(),
+      req.body.username.toString().trim(),
       hashPassword,
     ];
 
@@ -57,7 +57,7 @@ const User = {
    * @returns {object} user object
    */
   async login(req, res) {
-    if (!req.body.email || !req.body.password) {
+    if (!req.body.email.toString().trim() || !req.body.password.toString().trim()) {
       return res.status(400).send({ message: 'Some values are missing' });
     }
     if (!Helper.isValidEmail(req.body.email)) {
@@ -73,11 +73,23 @@ const User = {
         return res.status(400).send({ message: 'The credentials you provided is incorrect' });
       }
       const token = Helper.generateToken(rows[0].id, rows[0].isadmin);
+      const {
+        firstname, lastname, othernames, email, phoneNumber, username, isadmin,
+      } = rows[0];
+      const user = {
+        firstname,
+        lastname,
+        othernames,
+        email,
+        phoneNumber,
+        username,
+        isadmin,
+      };
       return res.status(200).send({
         status: 200,
         data: [{
           token,
-          user: rows[0],
+          user,
         }],
       });
     } catch (error) {
