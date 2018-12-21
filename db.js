@@ -7,13 +7,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, ssl: true,
+  connectionString: process.env.DATABASE_URL,
 });
 
 pool.on('connect', () => {
   console.log('connected to the db');
 });
-const createAdmin = () => {
+const createAdmin = async () => {
   const user = ` INSERT INTO
   users(firstname, lastname, othernames, email, phoneNumber, username, password, isadmin)
   VALUES('akaniru', 'victory', 'ifeanyi', 'example@gmail.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true');`;
@@ -138,6 +138,7 @@ const dropTables = async () => {
 const createAllTables = async () => {
   await dropTables();
   await createUserTable();
+  await createAdmin();
   await createRecordTable();
   pool.end();
 };

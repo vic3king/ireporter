@@ -88,10 +88,10 @@ const Record = {
     }
   },
   /**
-   * Update A Record
+   * Get A Record by type
    * @param {object} req
    * @param {object} res
-   * @returns {object} updated record
+   * @returns {object} record object
    */
   async findByType(req, res) {
     const findOneQuery = 'SELECT * FROM records WHERE type = $1';

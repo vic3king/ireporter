@@ -19,8 +19,8 @@ const Validate = {
     const findOneQuery = 'SELECT * FROM users WHERE username=$1 OR phonenumber=$2 OR email=$3';
     const { rows } = await db.query(findOneQuery, [req.body.username, req.body.phonenumber, req.body.email]);
     if (rows[0]) {
-      return res.status(404).send({
-        status: 404,
+      return res.status(400).send({
+        status: 400,
         error: 'username, phonenumber or email already exists',
       });
     }
@@ -56,12 +56,12 @@ const Validate = {
   async isAdmin(req, res, next) {
     const token = req.headers['x-access-token'];
     if (!token) {
-      return res.status(400).send({ message: 'Token is not provided' });
+      return res.status(401).send({ message: 'Token is not provided' });
     }
     const decoded = await jwt.verify(token, process.env.SECRET);
     if (decoded.isAdmin === false) {
-      return res.status(400).json({
-        status: 400,
+      return res.status(403).json({
+        status: 403,
         error: 'only admin users have access to this route',
       });
     }

@@ -85,7 +85,6 @@ const User = {
         username,
         isadmin,
       };
-      console.log(user);
       return res.status(200).send({
         status: 200,
         data: [{
