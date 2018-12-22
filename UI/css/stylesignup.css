@@ -43,7 +43,7 @@ input[type = "submit"]:hover{
 }
 
 .wholeform{
-  display: flex;
+  display: flex !important;
   margin: 0 auto;
   width: 80%;
   justify-content: space-between;
@@ -65,14 +65,19 @@ input[type = "submit"]:hover{
 }
 
 /*media queries*/
- @media only screen and (max-width: 1265px) {
+ @media only screen and (max-width: 1388px) {
   .wholeform{
     display: block;
   }
 } 
+@media only screen and (max-width: 1081px) {
+  .wholeform{
+    display: block !important;
+  }
+}
 @media only screen and (max-width: 787px) {
   .wholeform{
-    display: block;
+    display: block !important;
   }
 } 
 @media only screen and (max-width: 500px) {

@@ -23,12 +23,12 @@ const User = {
       VALUES($1, $2, $3, $4, $5, $6, $7)
       returning id,firstname,lastname,username,isadmin`;
     const values = [
-      req.body.firstname.toString().trim(),
-      req.body.lastname.toString().trim(),
-      req.body.othernames.toString().trim(),
-      req.body.email.toString().trim(),
-      req.body.phoneNumber.toString().trim(),
-      req.body.username.toString().trim(),
+      req.body.firstname,
+      req.body.lastname,
+      req.body.othernames,
+      req.body.email,
+      req.body.phoneNumber,
+      req.body.username,
       hashPassword,
     ];
 
