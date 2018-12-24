@@ -46,7 +46,7 @@ signUpForm.addEventListener('submit', (e) => {
     .then((resp) => {
       const { error, data } = resp;
       if (error) {
-        alert(error);
+        console.log(error)
       }
       const { user, token } = data[0];
       localStorage.iUser = JSON.stringify(user);
