@@ -61,6 +61,28 @@ const Record = {
     }
   },
   /**
+   * Gets All Records
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} records object
+   */
+  async getAllRecordsMine(req, res) {
+    const findAllQuery = 'SELECT * FROM records WHERE owner_id = $1';
+    try {
+      const { rows, rowCount } = await db.query(findAllQuery, [req.user.id]);
+      return res.status(200).send({
+        status: 200,
+        data: rows,
+        rowCount,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        error: error.message,
+      });
+    }
+  },
+  /**
    * Get A Record
    * @param {object} req
    * @param {object} res

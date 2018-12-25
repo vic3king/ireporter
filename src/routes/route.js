@@ -20,6 +20,8 @@ const getMiddleware = [
 ];
 router.get('/api/v2/incidents/', getMiddleware, dbRecordsController.getAllRecords);
 
+router.get('/api/v2/incidents/mine', Auth.verifyToken, dbRecordsController.getAllRecordsMine);
+
 router.get('/api/v2/incidents/type/:type', getMiddleware, dbRecordsController.findByType);
 
 router.get('/api/v2/incidents/:id', Auth.verifyToken, dbRecordsController.getOneRecord);
