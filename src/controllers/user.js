@@ -74,14 +74,14 @@ const User = {
       }
       const token = Helper.generateToken(rows[0].id, rows[0].isadmin);
       const {
-        firstname, lastname, othernames, email, phoneNumber, username, isadmin,
+        firstname, lastname, othernames, email, phonenumber, username, isadmin,
       } = rows[0];
       const user = {
         firstname,
         lastname,
         othernames,
         email,
-        phoneNumber,
+        phonenumber,
         username,
         isadmin,
       };

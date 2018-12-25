@@ -33,7 +33,7 @@ logInForm.addEventListener('submit', (e) => {
       const { user, token } = data[0];
       localStorage.iUser = JSON.stringify(user);
       localStorage.iToken = token;
-      window.location = (user.isadmin) ? './admin-intervention.html' : './profile.html';
+      window.location = (user.isadmin) ? './admin-profile.html' : './profile.html';
     })
     .catch(err => console.log(err));
 });
