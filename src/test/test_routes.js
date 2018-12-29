@@ -376,6 +376,7 @@ describe('Get all records', () => {
       .get('/api/v2/incidents')
       .set('x-access-token', adminToken)
       .end((err, res) => {
+        console.log(err)
         res.should.have.status(200);
         done();
       });
