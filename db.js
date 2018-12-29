@@ -27,7 +27,7 @@ const createAdmin = async () => {
     });
 };
 
-const createType = () => {
+const createType = async () => {
   const type = `
   CREATE TYPE incidentType AS ENUM('red-flag', 'intervention');
   CREATE TYPE stat AS ENUM('draft', 'under-investigation', 'rejected', 'resolved');
@@ -42,7 +42,7 @@ const createType = () => {
     });
 };
 
-const dropType = () => {
+const dropType = async () => {
   const type = `DROP TYPE IF EXISTS incidentType;
   DROP TYPE IF EXISTS stat`;
   pool.query(type)
@@ -136,6 +136,8 @@ const dropTables = async () => {
  * Create All Tables
  */
 const createAllTables = async () => {
+  await dropType();
+  await createType();
   await dropTables();
   await createUserTable();
   await createAdmin();
@@ -143,14 +145,15 @@ const createAllTables = async () => {
   pool.end();
 };
 
-module.exports = {
-  createAllTables,
-  createRecordTable,
-  createUserTable,
-  dropTables,
-  createAdmin,
-  createType,
-  dropType,
-};
+createAllTables();
+// module.exports = {
+//   createAllTables,
+//   createRecordTable,
+//   createUserTable,
+//   dropTables,
+//   createAdmin,
+//   createType,
+//   dropType,
+// };
 
-require('make-runnable');
+// require('make-runnable');

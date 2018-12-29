@@ -55,3 +55,45 @@ fetch(`${currApiEndpoint}/incidents/mine`, getMyRecordsConfig)
 
     resolved.textContent = data.filter(record => record.status === 'resolved').length;
   });
+
+fetch(`${currApiEndpoint}/incidents/mine`, getMyRecordsConfig)
+  .then(resp => resp.json())
+  .then((resp) => {
+    const { error, data } = resp;
+    if (error) {
+      console.log(error);
+    }
+    let output = '<h2>List of All Records</h2>';
+    data.forEach((record) => {
+      output += `<button class="accordion"><b>Request:</b> ${record.title} <br><b>Description:</b> ${record.description}<br><b>Incident Type:</b> ${record.type}</button>
+      <div class="panel">
+                    <p>${record.comment}</p>
+                    <a target="_blank" href="images/black-and-white-dark-marble-908283.jpg">
+                <img class="img" src="images/black-and-white-dark-marble-908283.jpg" alt="Forest"> </a>
+           <div class="stats">
+             <span>Incident Status: ${record.status}</span><br>
+           <span>Modified On: ${record.modefied_on}</span> 
+           </div>
+                    </div>
+      `;
+    });
+
+    // accordion button
+    const button = document.getElementById('title');
+    button.innerHTML = output;
+
+    //  accordion to render list of records
+    const accordion = document.getElementsByClassName('accordion');
+
+    for (let i = 0; i < accordion.length; i += 1) {
+      accordion[i].addEventListener('click', function toggle() {
+        this.classList.toggle('active');
+        const panel = this.nextElementSibling;
+        if (panel.style.display === 'block') {
+          panel.style.display = 'none';
+        } else {
+          panel.style.display = 'block';
+        }
+      });
+    }
+  });

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production babel-watch server.js",
     "test": "cross-env NODE_ENV=test nyc mocha src/test --compilers js:babel-core/register --exit",
-    "postbuild": "cross-env NODE_ENV=production node db.js migrate",
+    "postbuild": "cross-env NODE_ENV=production node db.js",
     "build": "babel server.js --out-dir build",
     "dev-start": "cross-env NODE_ENV=development babel-watch server.js",
     "cover": "istanbul cover _mocha",
