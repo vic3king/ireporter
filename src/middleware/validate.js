@@ -5,7 +5,7 @@ import db from '../db';
 
 const Validate = {
   validLocation(req, res, next) {
-    const longLat = req.body.location.trim();
+    const longLat = req.body.location;
     if (!isLatLong(longLat)) {
       return res.status(400).send({
         status: 400,

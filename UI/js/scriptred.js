@@ -19,19 +19,19 @@ function dislayRedForm() {
 }
 
 
-function editForm1() {
-  const parentDiv1 = document.querySelector('#redFlagAccordDiv');
-  // const parentDiv2 = document.querySelector('#intervRequestDiv');
+// function editForm1() {
+//   const parentDiv1 = document.querySelector('#redFlagAccordDiv');
+//   // const parentDiv2 = document.querySelector('#intervRequestDiv');
 
-  function displayFormEdit1(e) {
-    conditional(e, 'btn3', '.edit-red-flag', 'block');
-    // stop the bubbling effect
-    e.stopPropagation();
-  }
+//   function displayFormEdit1(e) {
+//     conditional(e, 'btn3', '.edit-red-flag', 'block');
+//     // stop the bubbling effect
+//     e.stopPropagation();
+//   }
 
-  // event listener for editing a red flag button
-  parentDiv1.addEventListener('click', displayFormEdit1);
-}
+//   // event listener for editing a red flag button
+//   parentDiv1.addEventListener('click', displayFormEdit1);
+// }
 
 dislayRedForm();
-editForm1();
+// editForm1();
