@@ -43,14 +43,18 @@
   <div class="box" id="addRedFlagDiv">
       <h2 class="page-title">Request Dashboard</h2>
      <button id="btn1">Add a Red flag </button>
-  <form class="box red-flag">
+  <form id="record-form" class="box red-flag">
       <div class="box2">
-            <h3 class="page-title">Create a red-flag record:</h3>
+            <h3 class="page-title">Create a record:</h3>
             <form>
-              <label for="title">Incident: </label>
-              <input type="text" placeholder="what is happening around you?" name="title" id="title" required>
-               <label for="description">Description: </label>
-              <textarea name="description" id="description" rows="4" required></textarea>
+              <label for="title">Incident Title: </label>
+              <input type="text" id="title" placeholder="what is happening around you?" name="title" id="title" required>
+              <label for="type">Incident Type: </label>
+              <input type="text" id="type" placeholder="red-flag or intervention" name="title" id="type" required>
+              <label for="description">Description: </label>
+              <input type="text" id="description" placeholder="give a brief intro..." name="description" required>
+               <label for="comment">Comment: </label>
+              <textarea name="comment" id="comment" rows="4" required></textarea>
               <label for="address">Address</label>
               <input type="text" id="search_term" placeholder="enter your address" name="address" >
               <label for="lat">Latitude</label>
@@ -62,52 +66,10 @@
               <button type="submit">Save Record</button>
         </div>
     </form>
-    <h4 class="page-title">List of Red Flags</h4>
-    <button class="accordion">Incident: Disturbance in my area</button>
-    <div class="panel" id="redFlagAccordDiv">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><br><br><br>
-           <a target="_blank" href="images/black-and-white-dark-marble-908283.jpg">
-                <img class="img" src="images/black-and-white-dark-marble-908283.jpg" alt="Forest"> </a>
-           <div class="stats">
-             <span>Incident Status: Draft</span><br>
-           <span>Created On:<input type="date" id="start" name="trip-start"
-           value="2018-07-22"
-           min="2018-01-01" max="2018-12-31"></span> 
-           </div>
-      <button class="delete-record">Delete</button>
-     <button id="btn3" class="edit-record">Edit</button>
-     <form class="edit-red-flag" >
-        <div class="box2">
-              <h3 class="page-title">Edit red-flag record:</h3>
-              <form>
-                <label for="title">Incident: </label>
-                <input type="text" name="title" id="title-edit" required>
-                 <label for="description">Description: </label>
-                <textarea name="description" id="description-edit" rows="4" required></textarea>
-                <label for="address">Address</label>
-                <input type="text" id="search_term" placeholder="enter your address" name="address" >
-                <label for="lat">Latitude</label>
-                <input type="text" id="lat" placeholder="where are you? enter Latitude eg 45.002440" name="lat">
-                <label for="lng">Longitude</label>
-                <input type="text" id="lng" placeholder="where are you? enter Longitute eg -90.810480" name="lng">
-                <button type="submit">Update Record</button>
-          </div>
-      </form>
-    </div>
     </div>   
-    </div>
-    <div class="pagination">
-      <a href="#">&laquo;</a>
-      <a href="#">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">&raquo;</a>
     </div>
 <script src="js/scriptred.js"></script>
 <script src="js/accordion.js"></script>
+<script src="js/records.js"></script>
 </body>
 </html>

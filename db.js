@@ -146,14 +146,12 @@ const createAllTables = async () => {
 };
 
 createAllTables();
-// module.exports = {
-//   createAllTables,
-//   createRecordTable,
-//   createUserTable,
-//   dropTables,
-//   createAdmin,
-//   createType,
-//   dropType,
-// };
-
-// require('make-runnable');
+module.exports = {
+  createAllTables,
+  createRecordTable,
+  createUserTable,
+  dropTables,
+  createAdmin,
+  createType,
+  dropType,
+};
