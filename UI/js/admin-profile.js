@@ -22,8 +22,8 @@ if (!iToken) {
   invalidToken();
 }
 
-const currApiEndpoint = 'http://127.0.0.1:3000/api/v2';
-// const currApiEndpoint = 'https://afternoon-tundra-97957.herokuapp.com/api/v2';
+// const currApiEndpoint = 'http://127.0.0.1:3000/api/v2';
+const currApiEndpoint = 'https://afternoon-tundra-97957.herokuapp.com/api/v2';
 
 const setUpHeader = () => ({ 'x-access-token': iToken });
 
@@ -118,14 +118,11 @@ fetch(`${currApiEndpoint}/incidents`, getMyRecordsConfig)
     const viewRec3 = document.getElementById('view3');
     const viewRec4 = document.getElementById('view4');
     const viewRec5 = document.getElementById('view5');
-    const stuff  = document.getElementById('radio-investigation')
-    try {
-      
-    } catch (error) {
-      stuff.addEventListener('click', () => {
-        console.log('radio-test')
-      })
-    }
+    const stuff = document.getElementById('radio-investigation');
+
+    stuff.addEventListener('click', () => {
+      console.log('radio-test');
+    });
     //  event listeners to display records
     viewRec1.addEventListener('click', () => {
       console.log('test1');
