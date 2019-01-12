@@ -7,8 +7,8 @@ const signUpUsername = document.getElementById('username');
 const signUpPhoneNumber = document.getElementById('phonenumber');
 const signUpPassword = document.getElementById('password');
 
-// const currApiEndpoint = 'http://127.0.0.1:3000/api/v2';
-const currApiEndpoint = 'https://afternoon-tundra-97957.herokuapp.com/api/v2';
+const currApiEndpoint = 'http://127.0.0.1:3000/api/v2';
+// const currApiEndpoint = 'https://afternoon-tundra-97957.herokuapp.com/api/v2';
 
 signUpForm.addEventListener('submit', (e) => {
   e.preventDefault();

@@ -1,7 +1,7 @@
 import express from 'express';
 import 'babel-polyfill';
 import cors from 'cors';
-import routes from './src/routes/route';
+import routes from './routes/route';
 
 const app = express();
 const port = process.env.PORT || 3000;
