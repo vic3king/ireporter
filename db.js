@@ -65,7 +65,7 @@ const createRecordTable = async () => {
         id serial PRIMARY KEY,
         title VARCHAR(128) NOT NULL,
         description VARCHAR(128) NOT NULL,
-        type incidenttype NOT NULL,
+        type incidentType NOT NULL,
         location VARCHAR(50) NOT NULL,
         status stat NOT NULL,
         comment VARCHAR(128) NOT NULL,
@@ -74,9 +74,7 @@ const createRecordTable = async () => {
         videos VARCHAR[],
         modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         owner_id serial NOT NULL,
-        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (owner_id) REFERENCES users (id) ON DELETE CASCADE
-      
+        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
       `;
 
@@ -137,11 +135,11 @@ const dropTables = async () => {
  */
 const createAllTables = async () => {
   await dropType();
-  await createType();
   await dropTables();
+  await createType();
   await createUserTable();
-  await createAdmin();
   await createRecordTable();
+  await createAdmin();
   pool.end();
 };
 

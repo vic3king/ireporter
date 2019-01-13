@@ -67,7 +67,7 @@ const Record = {
    * @returns {object} records object
    */
   async getAllRecordsMine(req, res) {
-    const findAllQuery = 'SELECT * FROM records WHERE owner_id = $1';
+    const findAllQuery = 'SELECT * FROM "records" WHERE owner_id = $1';
     try {
       const { rows, rowCount } = await db.query(findAllQuery, [req.user.id]);
       return res.status(200).send({
