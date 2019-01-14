@@ -118,11 +118,11 @@ fetch(`${currApiEndpoint}/incidents`, getMyRecordsConfig)
     const viewRec3 = document.getElementById('view3');
     const viewRec4 = document.getElementById('view4');
     const viewRec5 = document.getElementById('view5');
-    const stuff = document.getElementById('radio-investigation');
+    // const stuff = document.getElementById('radio-investigation');
 
-    stuff.addEventListener('click', () => {
-      console.log('radio-test');
-    });
+    // stuff.addEventListener('click', () => {
+    //   console.log('radio-test');
+    // });
     //  event listeners to display records
     viewRec1.addEventListener('click', () => {
       console.log('test1');

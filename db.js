@@ -16,7 +16,7 @@ pool.on('connect', () => {
 const createAdmin = async () => {
   const user = ` INSERT INTO
   users(firstname, lastname, othernames, email, phoneNumber, username, password, isadmin)
-  VALUES('akaniru', 'victory', 'ifeanyi', 'example@gmail.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true');`;
+  VALUES('akaniru', 'victory', 'ifeanyi', 'example@yahoo.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true');`;
 
   pool.query(user)
     .then((res) => {
@@ -65,7 +65,7 @@ const createRecordTable = async () => {
         id serial PRIMARY KEY,
         title VARCHAR(128) NOT NULL,
         description VARCHAR(128) NOT NULL,
-        type incidentType NOT NULL,
+        type incidenttype NOT NULL,
         location VARCHAR(50) NOT NULL,
         status stat NOT NULL,
         comment VARCHAR(128) NOT NULL,
@@ -74,7 +74,9 @@ const createRecordTable = async () => {
         videos VARCHAR[],
         modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         owner_id serial NOT NULL,
-        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (owner_id) REFERENCES users (id) ON DELETE CASCADE
+      
       );
       `;
 
@@ -134,16 +136,17 @@ const dropTables = async () => {
  * Create All Tables
  */
 const createAllTables = async () => {
-  await dropType();
   await dropTables();
+  await dropType();
   await createType();
   await createUserTable();
-  await createRecordTable();
   await createAdmin();
+  await createRecordTable();
   pool.end();
 };
 
 createAllTables();
+
 module.exports = {
   createAllTables,
   createRecordTable,
