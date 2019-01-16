@@ -413,6 +413,8 @@ describe('Get records by type', () => {
       .get('/api/v2/incidents/type/red-flag')
       .set('x-access-token', adminToken)
       .end((err, res) => {
+        console.log(res)
+        console.log(err)
         res.should.have.status(200);
         done();
       });
