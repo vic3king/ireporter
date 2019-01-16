@@ -370,6 +370,31 @@ describe('CREATE a record', () => {
   });
 });
 
+describe('Get all my records', () => {
+  it('should return a success status 200', (done) => {
+    chai.request(server)
+      .get('/api/v2/incidents/mine')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('should return correct error message when no token is provided', (done) => {
+    chai.request(server)
+      .get('/api/v2/incidents/mine')
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.should.deep.equal({
+          status: 401,
+          message: 'Token is not provided',
+        });
+        done();
+      });
+  });
+});
+
 describe('Get all records', () => {
   it('should return a success status 200', (done) => {
     chai.request(server)

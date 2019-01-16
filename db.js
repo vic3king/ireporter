@@ -69,7 +69,6 @@ const createRecordTable = async () => {
         location VARCHAR(50) NOT NULL,
         status stat NOT NULL,
         comment VARCHAR(128) NOT NULL,
-        message VARCHAR(50) NOT NULL,
         images VARCHAR[],
         videos VARCHAR[],
         modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

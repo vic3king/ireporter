@@ -11,8 +11,8 @@ const Record = {
    */
   async createRecord(req, res) {
     const text = `INSERT INTO
-      records(title, description, type, owner_id, location, status, comment, message)
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+      records(title, description, type, owner_id, location, status, comment)
+      VALUES($1, $2, $3, $4, $5, $6, $7)
       returning *`;
     const values = [
       req.body.title,
@@ -22,13 +22,13 @@ const Record = {
       req.body.location,
       'draft',
       req.body.comment,
-      'record created',
     ];
 
     try {
       const { rows } = await db.query(text, values);
       return res.status(201).send({
         status: 201,
+        message: 'Record Created',
         data: rows[0],
       });
     } catch (error) {
@@ -50,6 +50,7 @@ const Record = {
       const { rows, rowCount } = await db.query(findAllQuery);
       return res.status(200).send({
         status: 200,
+        message: 'Records retrieved',
         data: rows,
         rowCount,
       });
@@ -72,6 +73,7 @@ const Record = {
       const { rows, rowCount } = await db.query(findAllQuery, [req.user.id]);
       return res.status(200).send({
         status: 200,
+        message: 'Records retrieved',
         data: rows,
         rowCount,
       });
@@ -100,6 +102,7 @@ const Record = {
       }
       return res.status(200).send({
         status: 200,
+        message: 'Record retrieved',
         data: rows[0],
       });
     } catch (error) {
@@ -127,6 +130,7 @@ const Record = {
       }
       return res.status(200).send({
         status: 200,
+        message: 'Records retrieved',
         data: rows,
       });
     } catch (error) {
@@ -163,6 +167,7 @@ const Record = {
       const response = await db.query(updateOneQuery, values);
       return res.status(200).send({
         status: 200,
+        message: 'Record comment update succesful',
         data: response.rows[0],
       });
     } catch (err) {
@@ -223,6 +228,7 @@ const Record = {
       }
       return res.status(200).send({
         status: 200,
+        message: 'Record location update succesful',
         data: rows[0],
       });
     } catch (err) {
@@ -248,7 +254,11 @@ const Record = {
           message: 'record not found',
         });
       }
-      return res.status(200).send({ message: 'deleted succesfully' });
+      return res.status(200).send({
+        status: 200,
+        message: 'record deleted succesfully',
+        data: rows[0],
+      });
     } catch (error) {
       return res.status(400).send({
         status: 400,
