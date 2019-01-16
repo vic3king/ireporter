@@ -1,0 +1,360 @@
+FORMAT: 1A
+HOST: https://afternoon-tundra-97957.herokuapp.com/api/v2
+
+# ireporter
+
+This API enables you make requests or complaints to goverment agencies in form of a red-flag or an intervention request.
+
+## User Sign Up [/auth/signup]
+
+### Sign Up User [POST]
+Signs User Up and returns user details and token
+
++ Request (application/json)
+
+        {
+            "firstname": "king",
+            "lastname": "ray",
+            "othernames": "jones",
+            "email": "ray@gmail.com",
+            "password": "2020ada",
+            "phoneNumber": "090632789922",
+            "username": "kingray"
+        }
+
++ Response 201 (application/json)
+
+            {
+                 "status": 201,
+                 "data": [
+                      {
+                        "token": "< Token assigned to user >",
+                        "user": {
+                            "id": <user ID>,
+                            "firstname": "king",
+                            "lastname": "ray",
+                            "username": "kingray",
+                            "isadmin": false
+                        }
+                    } 
+                 ] 
+             }
+            
+## User Login [/auth/login]
+
+### Log In User [POST]
+Logs user in and returns token which is required for modifying records
++ Request (application/json)
+
+        {
+            "email": "ray@gmail.com",
+            "password": "2020ada"
+         }
+
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": [
+                 {
+                    "token": "< Token assigned to user >",
+                    "user": {
+                        "firstname": "king",
+                        "lastname": "ray",
+                        "othernames": "jones",
+                        "email": "ray@gmail.com",
+                        "phonenumber": "090632789922",
+                        "username": "kingray",
+                        "isadmin": false
+                    }
+                }
+            ]
+        }
+
+
+## Add record [/incidents]
+
+### creates a new red-flag record [POST]
+Creates a new red flag record
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+
+    + Body
+        
+            {
+                "title": "cultists disturbance",
+                "description": "i have been reciving threats from cultists",
+                "type": "red-flag",
+                "location": "0.2220, 0.4400",
+                "comment": "this all began when i went to the cafeteria on...."
+             }
+            
++ Response 201 (application/json)
+
+        {
+            "status": 201,
+            "data": {
+                "id": <record ID>,
+                "title": "cultists disturbance",
+                "description": "i have been reciving threats from cultists",
+                "type": "red-flag",
+                "location": "0.2220, 0.4400",
+                "status": "draft",
+                "comment": "this all began when i went to the cafeteria on....",
+                "message": "record created",
+                "images": null,
+                "videos": null,
+                "modefied_on": "2019-01-16T00:03:23.284Z",
+                "owner_id": <owner ID>,
+                "created_on": "2019-01-16T00:03:23.284Z"
+            }
+        }
+ 
+
+## Add record [/incidents]   
+
+### creates a new intervention record [POST]
+Creates a new intervention record
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+
+    + Body
+        
+            {
+                "title": "no light!",
+                "description": "no light in my area for the past 2months",
+                "type": "intervention",
+                "location": "0.2220, 0.4400",
+                "comment": "for the past few months we have had no light, after making a series of complaints to phcn....."
+            }
+            
++ Response 201 (application/json)
+
+        {
+            "status": 201,
+            "data": {
+                "id": < record ID>,
+                "title": "no light!",
+                "description": "no light in my area for the past 2months",
+                "type": "intervention",
+                "location": "0.2220, 0.4400",
+                "status": "draft",
+                "comment": "for the past few months we have had no light, after making a series of complaints to phcn.....",
+                "message": "record created",
+                "images": null,
+                "videos": null,
+                "modefied_on": "2019-01-16T00:12:19.546Z",
+                "owner_id": <owner ID>,
+                "created_on": "2019-01-16T00:12:19.546Z"
+            }
+        }
+
+
+##  Records [/incidents/mine]
+
+### Get all records belonging to a specific user [GET]
+Returns all records belonging to a specific user
+
++ Response 200 (application/json)
+
+        {
+            "status" : 200,
+            "data" : [{ <records-objects> }]
+        }
+
+
+##  Record [/incidents/:id]
+
+### Get a specific record belonging to a particular user [GET]
+Returns an existing record
+
++ Response 200 (application/json)
+
+        {
+            "status" : 200,
+            "data" : [{ <Requested Record>}]
+        }
+        
+        
+## Update Record comment [/incidents/:id/comment]
+
+### updates a particular record created by a particular user [PUT]
+Updates the comment of an existing record
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+    
+    + Body
+        
+            {
+                "comment": "for the past few months we have had no light, after making a series of complaints to phcn....."
+            }
+            
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": {
+                "id": < record ID>,
+                "comment": "updated record",
+                <Rest of Record>
+            }
+        }
+
+## Update Record comment [/incidents/:id/location]
+
+### updates a particular record created by a particular user [PUT]
+Updates the location of an existing record
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+    
+    + Body
+        
+            {
+                "comment": "for the past few months we have had no light, after making a series of complaints to phcn....."
+            }
+            
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": {
+                "id": < record ID>,
+                "location": "0.2220, 0.4400",
+                <Rest of Record>
+            }
+        }
+
+## delete record [/incidents/:id]
+
+### deletes a particular record created by a particular user [DELETE]
+deletes an existing record
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+    
+            
++ Response 200 (application/json)
+
+        {
+            "message": "deleted succesfully"
+        }
+
+
+## Admin Login [/auth/login]
+
+### Log In administrator [POST]
+Logs admin in and returns a taoken to be used to access private routes
++ Request (application/json)
+
+        {
+            "email": "example@yahoo.com",
+            "password": "2020ada"
+         }
+
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": [
+                 {
+                    "token": "< Token assigned to admon >",
+                    "user": {
+                        "firstname": "akaniru",
+                        "lastname": "victory",
+                        "othernames": "ifeanyi",
+                        "email": "example@yahoo.com",
+                        "phonenumber": "07063212299",
+                        "username": "vee",
+                        "isadmin": true
+                    }
+                }
+            ]
+        }
+
+
+##  All Records [/incidents]
+
+### Get all records created by all users [GET]
+Returns all records 
+
++ Response 200 (application/json)
+
+        {
+            "status" : 200,
+            "data" : [{ <records-objects> }]
+        }
+
+
+##  Records [/incidents/types/red-flag]
+
+### Get all red-flag records created by all users [GET]
+Returns all red-flag records 
+
++ Response 200 (application/json)
+
+        {
+            "status" : 200,
+            "data" : [{ <records-objects> }]
+        }
+
+
+##  Records [/incidents/types/intervention]
+
+### Get all intervention records created by all users [GET]
+Returns all intervention records 
+
++ Response 200 (application/json)
+
+        {
+            "status" : 200,
+            "data" : [{ <records-objects> }]
+        }
+
+
+##  change record status [/incidents/:id/status]
+### updates a particular record created by a particular user [PUT]
+Updates the comment of an existing record
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <admin-token>"
+    
+    + Body
+        
+            {
+                "status": "resolved || rejected || under-investigation"
+            }
+            
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": {
+                "id": < record ID>,
+                "status": "resolved || rejected || under-investigation",
+                <Rest of Record>
+            }
+        }
