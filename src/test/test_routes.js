@@ -371,11 +371,12 @@ describe('CREATE a record', () => {
 });
 
 describe('Get all records', () => {
-  it('should return a success status 200', (done) => {
+  it.only('should return a success status 200', (done) => {
     chai.request(server)
       .get('/api/v2/incidents')
       .set('x-access-token', adminToken)
       .end((err, res) => {
+        console.log(res.body);
         res.should.have.status(200);
         done();
       });
