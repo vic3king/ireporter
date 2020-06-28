@@ -16,7 +16,7 @@ pool.on('connect', () => {
 const createAdmin = async () => {
   const user = ` INSERT INTO
   users(firstname, lastname, othernames, email, phoneNumber, username, password, isadmin)
-  VALUES('akaniru', 'victory', 'ifeanyi', 'example@gmail.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true');`;
+  VALUES('akaniru', 'victory', 'ifeanyi', 'example@yahoo.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true');`;
 
   pool.query(user)
     .then((res) => {
@@ -69,7 +69,6 @@ const createRecordTable = async () => {
         location VARCHAR(50) NOT NULL,
         status stat NOT NULL,
         comment VARCHAR(128) NOT NULL,
-        message VARCHAR(50) NOT NULL,
         images VARCHAR[],
         videos VARCHAR[],
         modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -136,9 +135,9 @@ const dropTables = async () => {
  * Create All Tables
  */
 const createAllTables = async () => {
+  await dropTables();
   await dropType();
   await createType();
-  await dropTables();
   await createUserTable();
   await createAdmin();
   await createRecordTable();
@@ -146,6 +145,7 @@ const createAllTables = async () => {
 };
 
 createAllTables();
+
 module.exports = {
   createAllTables,
   createRecordTable,

@@ -35,11 +35,21 @@ const User = {
     try {
       const { rows } = await db.query(text, values);
       const token = Helper.generateToken(rows[0].id, rows[0].isAdmin);
+      const {
+        firstname, email, phonenumber, isadmin,
+      } = rows[0];
+      const user = {
+        firstname,
+        email,
+        phonenumber,
+        isadmin,
+      };
       return res.status(201).send({
         status: 201,
         data: [{
+          user,
           token,
-          user: rows[0],
+          message: 'Succesful signup',
         }],
       });
     } catch (error) {
@@ -88,8 +98,9 @@ const User = {
       return res.status(200).send({
         status: 200,
         data: [{
-          token,
           user,
+          token,
+          message: 'Succesful Login',
         }],
       });
     } catch (error) {
